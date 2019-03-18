@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
+// GetSession returns cached AWS session. For faster AWS Config
 func (factory *SessionFactory) GetSession(config csasession.SessionConfig) (*session.Session, error) {
 	factory.mutex.Lock()
 	defer factory.mutex.Unlock()
@@ -15,6 +16,7 @@ func (factory *SessionFactory) GetSession(config csasession.SessionConfig) (*ses
 	return factory.NewSession(config)
 }
 
+// NewSession creates a new session and caches it.
 func (factory *SessionFactory) NewSession(config csasession.SessionConfig) (*session.Session, error) {
 	sess, err := csasession.CreateSession(config)
 	if err != nil {
