@@ -65,3 +65,8 @@ func (logger *Logger) Always(message string) {
 func (logger *Logger) Warning(warning string) {
 	logger.log(WARNING, warning)
 }
+
+// Log Error
+func (logger *Logger) Error(err string) {
+	logger.log(ERROR, err)
+}
