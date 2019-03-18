@@ -60,3 +60,8 @@ func CreateQuietLogger() Logger {
 func (logger *Logger) Always(message string) {
 	fmt.Println(message)
 }
+
+//Log error
+func (logger *Logger) Warning(warning string) {
+	logger.log(WARNING, warning)
+}
