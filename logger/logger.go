@@ -57,3 +57,6 @@ func CreateQuietLogger() Logger {
 }
 
 // Log always
+func (logger *Logger) Always(message string) {
+	fmt.Println(message)
+}
