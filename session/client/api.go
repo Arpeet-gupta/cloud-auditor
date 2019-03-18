@@ -9,6 +9,7 @@ type ClientFactory interface {
 	GetEc2Client(config csasession.SessionConfig) (EC2Client, error)
 }
 
+// Create a EC2 session for AWS
 func (factory *ClientFactoryAWS) GetEc2Client(config csasession.SessionConfig) (EC2Client, error {
 	sess, err := factory.sessionFactory.GetSession(config)
 	if err != nil {
