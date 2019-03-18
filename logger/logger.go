@@ -37,3 +37,13 @@ var verboseModes = [...]string {
 func (verbosity Verbosity) String() string {
 	return verboseModes[verbosity]
 }
+
+// Create default logger
+
+func CreateDefaultLogger() Logger {
+	return logger{
+		Quiet:     true,
+		Yes:       false,
+		Verbosity: INFO,
+	}
+}
