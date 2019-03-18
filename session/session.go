@@ -5,11 +5,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
+// SessionConfig for providing configs of AWS
 type SessionConfig struct {
 	Profile string
 	Region string
 }
 
+// CreateSession returns new AWS Session
 func CreateSession(config SessionConfig) (*session.Session, error) {
 	sess, err := session.NewSessionWithOptions( 
 		session.Options{
@@ -22,6 +24,7 @@ func CreateSession(config SessionConfig) (*session.Session, error) {
 	return sess, err
 }
 
+// GetAvailableRegions returns list of All AWS regions
 func GetAvailableRegions() *[]string {
 	return &[]string{
 		"us-east-2",
