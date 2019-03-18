@@ -110,3 +110,16 @@ func (logger *Logger) SetVerbosity(verbosity string) {
 		}
 	}
 }
+
+func IsVerbosityValid(verbosity string) bool {
+	switch verbosity {
+		case
+		"TRACE",
+		"DEBUG",
+		"INFO",
+		"WARNING",
+		"ERROR":
+		return true
+	}
+	return false
+}
