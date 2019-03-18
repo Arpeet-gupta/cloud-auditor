@@ -25,3 +25,15 @@ const (
 	ERROR
 	WARNING
 )
+
+var verboseModes = [...]string {
+	"TRACE",
+	"DEBUG",
+	"INFO",
+	"ERROR",
+	"WARNING",
+}
+
+func (verbosity Verbosity) String() string {
+	return verboseModes[verbosity]
+}
