@@ -17,3 +17,11 @@ type ResourceValidation struct {
 }
 
 type Verbosity int
+
+const (
+	TRACE Verbosity = iota
+	DEBUG
+	INFO
+	ERROR
+	WARNING
+)
