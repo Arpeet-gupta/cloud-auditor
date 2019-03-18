@@ -85,3 +85,13 @@ func (logger *Logger) Debug(debug string) {
 func (logger *Logger) Trace(trace string) {
 	logger.log(TRACE, trace)
 }
+
+// Get input from command line
+func (logger *Logger) GetInput(message string, v ...interface{}) error {
+	fmt.Printf("%s: ", message)
+	_, err := fmt.Scanln(v...)
+	if err != nil {
+		return err
+	}
+	return nil
+}
