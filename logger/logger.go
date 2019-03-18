@@ -101,3 +101,12 @@ func (logger *Logger) log(verbosity Verbosity, message string) {
 		fmt.Println(verbosity.String() + ": " + message)
 	}
 }
+
+// Set logger verbosity
+func (logger *Logger) SetVerbosity(verbosity string) {
+	for index, element := range verboseModes {
+		if strings.ToUpper(verbosity) == element {
+			logger.Verbosity = Verbosity(index)
+		}
+	}
+}
