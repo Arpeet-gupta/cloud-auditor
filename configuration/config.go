@@ -14,3 +14,12 @@ type Config struct {
 	ClientFactory  clientfactory.ClientFactory
 	Logger         *logger.Logger
 }
+
+func GetConfig() (config Config) {
+	myLogger := logger.CreateDefaultLogger()
+	config.Logger = &myLogger
+	config.SessionFactory = sessionfactory.New()
+	config.ClientFactory = clientfactory.New(config.SessionFactory)
+
+	return config
+}
