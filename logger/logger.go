@@ -39,7 +39,6 @@ func (verbosity Verbosity) String() string {
 }
 
 // Create default logger
-
 func CreateDefaultLogger() Logger {
 	return logger{
 		Quiet:     true,
