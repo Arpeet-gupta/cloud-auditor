@@ -80,3 +80,8 @@ func (logger *Logger) Info(string) {
 func (logger *Logger) Debug(debug string) {
 	logger.log(DEBUG, debug)
 }
+
+// Log Trace
+func (logger *Logger) Trace(trace string) {
+	logger.log(TRACE, trace)
+}
