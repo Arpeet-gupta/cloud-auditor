@@ -75,3 +75,8 @@ func (logger *Logger) Error(err string) {
 func (logger *Logger) Info(string) {
 	logger.log(INFO, info)
 }
+
+// Log Debug
+func (logger *Logger) Debug(debug string) {
+	logger.log(DEBUG, debug)
+}
