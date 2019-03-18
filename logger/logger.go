@@ -70,3 +70,8 @@ func (logger *Logger) Warning(warning string) {
 func (logger *Logger) Error(err string) {
 	logger.log(ERROR, err)
 }
+
+// Log Info
+func (logger *Logger) Info(string) {
+	logger.log(INFO, info)
+}
