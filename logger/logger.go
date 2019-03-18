@@ -46,3 +46,14 @@ func CreateDefaultLogger() Logger {
 		Verbosity: INFO,
 	}
 }
+
+// Create Quiet Logger
+func CreateQuietLogger() Logger {
+	return logger{
+		Quiet:     true,
+		Yes:       false,
+		Verbosity: INFO,
+	}
+}
+
+// Log always
