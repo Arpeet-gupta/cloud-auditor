@@ -61,7 +61,7 @@ func (logger *Logger) Always(message string) {
 	fmt.Println(message)
 }
 
-//Log error
+//Log Warning
 func (logger *Logger) Warning(warning string) {
 	logger.log(WARNING, warning)
 }
