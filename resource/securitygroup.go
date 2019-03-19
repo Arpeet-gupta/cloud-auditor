@@ -7,3 +7,4 @@ import (
 	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
+type SecurityGroups map[string][]*ec2.IpPermission
