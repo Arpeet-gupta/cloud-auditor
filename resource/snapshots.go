@@ -34,5 +34,6 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 				return err
 			}
 		}
+		*s = append(*s, result.Snapshots...)
 	}
 }
