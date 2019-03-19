@@ -54,4 +54,6 @@ func (im *Images) LoadFromAWS(config *configuration.Config, region string) error
 			return err
 		}
 	}
+	*im = result.Images
+	return err
 }
