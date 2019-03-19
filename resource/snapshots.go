@@ -9,3 +9,7 @@ import (
 )
 
 type Snapshots []*ec2.Snapshot
+
+func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) error {
+	ec2API, err := config.ClientFactory.GetEc2Client(csasession.SessionConfig{Profile: config.Profile, Region: region})
+}
