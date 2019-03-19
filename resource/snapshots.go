@@ -8,3 +8,4 @@ import (
 	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
+type Snapshots []*ec2.Snapshot
