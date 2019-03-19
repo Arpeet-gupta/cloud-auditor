@@ -34,5 +34,7 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 		if result.NextToken == nil {
 			break
 		}
+		q.NextToken = result.NextToken
 	}
+	return nil
 }
