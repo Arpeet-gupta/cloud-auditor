@@ -24,7 +24,12 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 		result, err := ec2API.DescribeSnapshots(q)
 		if err != nil {
 			if aerr, ok := err.(awserr.Error); ok {
-				
+				switch aerr.Code() {
+					case "OptInRequired":
+						break
+					default:
+						return err
+				}
 			}
 		}
 	}
