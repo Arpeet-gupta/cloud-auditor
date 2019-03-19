@@ -39,4 +39,5 @@ func (e *Ec2s) LoadFromAWS(config *configuration.Config, region string) error {
 		}
 		q.NextToken = result.NextToken
 	}
+	return nil
 }
