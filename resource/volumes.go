@@ -19,7 +19,14 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 	for {
 		result, err := ec2API.DescribeVolumes(q)
 		if err != nil {
-			
+			if aerr, ok := err.(awserr.Error); ok {
+				switch aerr.Code() {
+					case "OptInRequired":
+						break
+					default:
+						return err
+				}
+			}
 		}
 	}
 }
