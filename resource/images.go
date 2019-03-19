@@ -28,5 +28,7 @@ func (im *Images) FindByTags(tags map[string]string) Images {
 				}
 			}
 		}
+		n = 0
 	}
+	return found
 }
