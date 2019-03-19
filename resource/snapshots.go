@@ -45,6 +45,9 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 
 func (s *Snapshots) FindById(id string) *ec2.Snapshot {
 	for _, snapshot := range *s {
-		
+		if id == *snapshot.SnapshotId {
+			return snapshot
+		}
 	}
+	return nil
 }
