@@ -40,3 +40,9 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 	}
 	return nil
 }
+
+func (s *SecurityGroups) GetIpPermissionsByID(groupID string) []*ec2.IpPermission {
+	if sg, ok := (*s)[groupID]; ok {
+		return sg
+	}
+}
