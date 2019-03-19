@@ -25,6 +25,8 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 						break
 					default:
 						return err
+				} else {
+					return err
 				}
 			}
 		}
