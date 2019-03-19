@@ -15,3 +15,11 @@ func (im Images) SortByDate() {
 		return *(im)[i].CreationDate < *(im)[j].CreationDate
 	}
 }
+
+func (im *Images) FindByTags(tags map[string]string) Images {
+	found := Images{}
+	n := 0
+	for _, image := range *im {
+
+	}
+}
