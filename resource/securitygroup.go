@@ -14,4 +14,6 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 	if err != nil {
 		return err
 	}
+	
+	q := &ec2.DescribeSecurityGroupsInput{}
 }
