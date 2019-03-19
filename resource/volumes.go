@@ -40,5 +40,7 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 }
 
 func (v *Volumes) FindById(id string) *ec2.Volume {
-	
+	for _, volume := range *v {
+		
+	}
 }
