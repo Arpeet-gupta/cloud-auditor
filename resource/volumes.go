@@ -31,5 +31,8 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 			}
 		}
 		*v = append(*v, result.Volumes...)
+		if result.NextToken == nil {
+			break
+		}
 	}
 }
