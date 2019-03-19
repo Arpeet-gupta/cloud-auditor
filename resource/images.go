@@ -20,6 +20,13 @@ func (im *Images) FindByTags(tags map[string]string) Images {
 	found := Images{}
 	n := 0
 	for _, image := range *im {
-
+		for _, tag := range image.Tags {
+			if v, ok := tags[*tag.Key]; ok && v == *tag.Value {
+				n++
+				if len(tags) == n {
+					found = append(found, image)
+				}
+			}
+		}
 	}
 }
