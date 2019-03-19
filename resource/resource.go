@@ -18,3 +18,7 @@ func LoadResource(r Resource, config *configuration.Config, region string) error
 	}
 	return nil
 }
+
+func LoadResources(config *configuration.Config, region string, resources ...Resource) error {
+	
+}
