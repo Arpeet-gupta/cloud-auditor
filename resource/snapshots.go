@@ -40,4 +40,5 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 		}
 		q.NextToken = result.NextToken
 	}
+	return nil
 }
