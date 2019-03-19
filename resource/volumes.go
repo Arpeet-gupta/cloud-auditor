@@ -14,4 +14,12 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 	if err != nil {
 		return err
 	}
+
+	q := &ec2.DescribeVolumesInput{}
+	for {
+		result, err := ec2API.DescribeVolumes(q)
+		if err != nil {
+			
+		}
+	}
 }
