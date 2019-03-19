@@ -38,3 +38,7 @@ func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error
 	}
 	return nil
 }
+
+func (v *Volumes) FindById(id string) *ec2.Volume {
+	
+}
