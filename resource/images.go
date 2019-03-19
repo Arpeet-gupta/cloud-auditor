@@ -43,6 +43,13 @@ func (im *Images) LoadFromAWS(config *configuration.Config, region string) error
 		Owners: []*string{aws.String("self")},
 	})
 	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+				case "OptInRequired":
+					break
+				default:
+					return err
+			}
+		}
 	}
 }
