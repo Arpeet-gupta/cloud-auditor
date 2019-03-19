@@ -38,4 +38,5 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 		}
 		q.NextToken = result.NextToken
 	}
+	return nil
 }
