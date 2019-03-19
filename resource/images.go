@@ -10,3 +10,8 @@ import (
 
 type Images []*ec2.Image
 
+func (im Images) SortByDate() {
+	sort.SliceStable(im, func(i, j int) bool {
+		return *(im)[i].CreationDate < *(im)[j].CreationDate
+	}
+}
