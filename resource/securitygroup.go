@@ -36,5 +36,6 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 		if result.NextToken == nil {
 			break
 		}
+		q.NextToken = result.NextToken
 	}
 }
