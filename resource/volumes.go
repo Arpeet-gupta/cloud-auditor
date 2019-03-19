@@ -7,3 +7,4 @@ import (
 	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
+type Volumes []*ec2.Volume
