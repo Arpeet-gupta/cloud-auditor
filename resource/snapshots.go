@@ -15,4 +15,8 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 	if err != nil {
 		return err
 	}
+
+	q := &ec2.DescribeSnapshotsInput{
+		OwnerIds: []*string{aws.String("self")},
+	}
 }
