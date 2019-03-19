@@ -20,8 +20,19 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 		result, err := ec2API.DescribeSecurityGroups(q)
 		if err != nil {
 			if aerr, ok := err.(awserr.Error); ok {
-				
+				switch aerr.Code() {
+					case "OptInRequired":
+						break
+					default:
+						return err
+				}
+			} else {
+				return err
 			}
 		}
+		for _, sg := range result.SecurityGroups {
+			(*s)[*sg.GroupId] = append((*s)[*sg.GroupId], sg.IpPermissions...)
+		}
+		
 	}
 }
