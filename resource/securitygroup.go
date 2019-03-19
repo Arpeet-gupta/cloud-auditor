@@ -18,5 +18,10 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 	q := &ec2.DescribeSecurityGroupsInput{}
 	for {
 		result, err := ec2API.DescribeSecurityGroups(q)
+		if err != nil {
+			if aerr, ok := err.(awserr.Error); ok {
+				
+			}
+		}
 	}
 }
