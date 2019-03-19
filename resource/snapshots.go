@@ -42,3 +42,7 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 	}
 	return nil
 }
+
+func (s *Snapshots) FindById(id string) *ec2.Snapshot {
+	
+}
