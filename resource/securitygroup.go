@@ -33,6 +33,8 @@ func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string
 		for _, sg := range result.SecurityGroups {
 			(*s)[*sg.GroupId] = append((*s)[*sg.GroupId], sg.IpPermissions...)
 		}
-		
+		if result.NextToken == nil {
+			break
+		}
 	}
 }
