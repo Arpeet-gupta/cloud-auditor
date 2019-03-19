@@ -35,5 +35,9 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 			}
 		}
 		*s = append(*s, result.Snapshots...)
+		if result.NextToken == nil {
+			break
+		}
+		q.NextToken = result.NextToken
 	}
 }
