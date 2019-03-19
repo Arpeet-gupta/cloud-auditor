@@ -32,3 +32,7 @@ func (im *Images) FindByTags(tags map[string]string) Images {
 	}
 	return found
 }
+
+func (im *Images) LoadFromAWS(config *configuration.Config, region string) error {
+	
+}
