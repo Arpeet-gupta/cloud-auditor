@@ -45,4 +45,5 @@ func (s *SecurityGroups) GetIpPermissionsByID(groupID string) []*ec2.IpPermissio
 	if sg, ok := (*s)[groupID]; ok {
 		return sg
 	}
+	return nil
 }
