@@ -8,3 +8,10 @@ import (
 )
 
 type Volumes []*ec2.Volume
+
+func (v *Volumes) LoadFromAWS(config *configuration.Config, region string) error {
+	ec2API, err := config.ClientFactory.GetEc2Client(csasession.SessionConfig{Profile: config.Profile, Region: region})
+	if err != nil {
+		return err
+	}
+}
