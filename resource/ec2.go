@@ -31,11 +31,12 @@ func (e *Ec2s) LoadFromAWS(config *configuration.Config, region string) error {
 				return err
 			}
 		}
-	}
-	for _, reservation := range result.Reservations {
-		*e = append(*e, reservation.Instances...)
-	}
-	if result.NextToken == nil {
-		break
+		for _, reservation := range result.Reservations {
+			*e = append(*e, reservation.Instances...)
+		}
+		if result.NextToken == nil {
+			break
+		}
+		q.NextToken = result.NextToken
 	}
 }
