@@ -50,6 +50,8 @@ func (im *Images) LoadFromAWS(config *configuration.Config, region string) error
 				default:
 					return err
 			}
+		} else {
+			return err
 		}
 	}
 }
