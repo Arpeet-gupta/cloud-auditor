@@ -30,6 +30,8 @@ func (s *Snapshots) LoadFromAWS(config *configuration.Config, region string) err
 					default:
 						return err
 				}
+			} else {
+				return err
 			}
 		}
 	}
