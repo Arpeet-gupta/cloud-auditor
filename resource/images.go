@@ -7,3 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/ec2"
 )
+
+type Images []*ec2.Image
+
