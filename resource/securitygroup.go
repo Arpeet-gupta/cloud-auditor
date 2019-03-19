@@ -10,5 +10,8 @@ import (
 type SecurityGroups map[string][]*ec2.IpPermission
 
 func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string) error {
-	
+	ec2API, err := config.ClientFactory.GetEc2Client(csasession.SessionConfig{Profile: config.Profile, Region: region})
+	if err != nil {
+		return err
+	}
 }
