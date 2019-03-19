@@ -8,3 +8,7 @@ import (
 )
 
 type SecurityGroups map[string][]*ec2.IpPermission
+
+func (s *SecurityGroups) LoadFromAWS(config *configuration.Config, region string) error {
+	
+}
