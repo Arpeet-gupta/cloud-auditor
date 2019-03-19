@@ -38,4 +38,8 @@ func (im *Images) LoadFromAWS(config *configuration.Config, region string) error
 	if err != nil {
 		return err
 	}
+
+	result, err := ec2API.DescribeImages(&ec2.DescribeImagesInput{
+		Owners: []*string{aws.String("self")},
+	})
 }
