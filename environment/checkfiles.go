@@ -9,3 +9,6 @@ import (
 	"strconv"
 	"strings"
 )
+
+var Regions = getAllRegions()
+
