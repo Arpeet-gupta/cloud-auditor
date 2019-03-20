@@ -38,7 +38,11 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 			if strings.ToUpper(ans) == "y" {
 				region := getUserRegion(config)
 				CreateAWSConfigFile(config, profile, region, "")
+			} else {
+				config.Logger.Info("You can use another profile by setting the \"-p\" argument or specify a different default profile by setting the AWS_PROFILE variable")
+				return false
 			}
 		}
+		
 	}
 }
