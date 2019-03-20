@@ -35,6 +35,10 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 		if !helpers.SliceContains(profilesInConfig, profile) {
 			var ans string
 			config.Logger.GetInput("You don't have the "+profile+" profile in your config file. Would you like to create one? *y* / *n*", &ans)
+			if strings.ToUpper(ans) == "y" {
+				region := getUserRegion(config)
+				CreateAWSConfigFile(config, profile, region, "")
+			}
 		}
 	}
 }
