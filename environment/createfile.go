@@ -65,5 +65,11 @@ func createConfigProfileFromCredentials(homeDir string, config *configuration.Co
 }
 
 func setProfileInfoAndCreateConfigFile(config *configuration.Config) (profile string) {
-
+	var ans string
+	config.Logger.GetInput("Do you want to create a default profile with default values? *y* / *n*", &ans)
+	if strings.ToUpper(ans) == "y" {
+		region := "us-east-1"
+		profile = "default"
+		CreateAWSConfigFile(config, profile, region, "JSON")
+	}
 }
