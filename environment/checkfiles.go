@@ -12,3 +12,15 @@ import (
 
 var Regions = getAllRegions()
 
+func CheckAWSConfigFiles(config *configuration.Config) bool {
+	homeDir, pathError := GetUserHomeDir()
+	if pathError != nil {
+		config.Logger.Error(pathError.Error())
+		return false
+	}
+	
+	configAWSExists, configError := isAWSConfigPresent(homeDir)
+	if configError != nil {
+		config.Logger.Error(configError.Error())
+	}
+}
