@@ -29,4 +29,11 @@ func LoadResources(config *configuration.Config, region string, resources ...Res
 		wg.Wait()
 		close(errs)
 	}()
+
+	for _, r := range resources {
+		go func(r Resource) {
+			defer wg.Done()
+			errs <- r.LoadFromAWS(config, region)
+		}(r)
+	}
 }
