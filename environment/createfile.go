@@ -81,3 +81,7 @@ func setProfileInfoAndCreateConfigFile(config *configuration.Config) (profile st
 	}
 	return profile
 }
+
+func addProfileToCredentials(profile string, homePath string, config *configuration.Config) {
+	
+}
