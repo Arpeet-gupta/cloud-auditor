@@ -59,6 +59,11 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 				profile = setProfileInfoAndCreateConfigFile(config)
 				CreateAWSCredentialsFile(config, profile)
 			}
+		} else {
+			config.Logger.Info("File .aws/config does not exist.")
+			profile = setProfileInfoAndCreateConfigFile(config)
+			CreateAWSCredentialsFile(config, profile)
 		}
 	}
+	return true
 }
