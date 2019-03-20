@@ -55,4 +55,11 @@ func createConfigProfileFromCredentials(homeDir string, config *configuration.Co
 	profilesInCredentials := UniqueNonEmptyElementsOf(getProfilesFromFile(config, homeDir+"/.aws/credentials"))
 	config.Logger.Always("Available profile names are: " + fmt.Sprint("[ "+strings.Join(profilesInCredentials, ", ")+" ]"))
 	config.Logger.GetInput("Profile", &profile)
+
+	for !helpers.SliceContains(profilesInCredentials, profile) {
+		config.Logger.Always("Invalid profile name. Available profile names are: " + fmt.Sprint("[ "+strings.Join(profilesInCredentials, ", ")+" ]"))
+		config.Logger.GetInput("Profile", &profile)
+	}
+	region := getUserRegion(config)
+	CreateAWSConfigFile(config, profile, region, "")
 }
