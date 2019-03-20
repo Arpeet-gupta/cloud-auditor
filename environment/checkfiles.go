@@ -145,4 +145,5 @@ func getProfilesFromFile(config *configuration.Config, path string) []string {
 	}
 	defer credentials.Close()
 	profiles := make([]string, 0)
+	scanner := bufio.NewScanner(credentials)
 }
