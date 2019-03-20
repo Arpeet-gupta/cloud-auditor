@@ -33,3 +33,7 @@ func CreateAWSCredentialsFile(config *configuration.Config, profile string) {
 		appendStringToFile(path, line)
 	}
 }
+
+func CreateAWSConfigFile(config *configuration.Config, profile string, region string, output string) {
+
+}
