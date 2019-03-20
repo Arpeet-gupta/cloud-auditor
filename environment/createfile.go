@@ -88,3 +88,6 @@ func addProfileToCredentials(profile string, homePath string, config *configurat
 		CreateAWSCredentialsFile(config, profile)
 	}
 }
+
+func appendStringToFile(path, text string) error {
+}
