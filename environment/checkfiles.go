@@ -75,3 +75,11 @@ func isAWSConfigPresent(homePath string) (bool, error) {
 	}
 	return true, nil
 }
+
+func isCredentialsPresent(homePath string) (bool, error) {
+	_, credentialsError := os.Open(homePath + "/.aws/credentials")
+	if credentialsError != nil {
+		return false, nil
+	}
+	return true, nil
+}
