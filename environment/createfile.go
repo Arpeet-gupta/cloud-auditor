@@ -42,4 +42,11 @@ func CreateAWSConfigFile(config *configuration.Config, profile string, region st
 	if pathError != nil {
 		config.Logger.Error(pathError.Error())
 	}
+	path := homePath + "/.aws/config"
+	line := "\n[" + profile + "]\n"
+	appendStringToFile(path, line)
+	line = "region" + " = " + region + "\n"
+	appendStringToFile(path, line)
+	line = "output" + " = " + output + "\n"
+	appendStringToFile(path, line)
 }
