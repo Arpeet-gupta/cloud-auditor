@@ -50,3 +50,7 @@ func CreateAWSConfigFile(config *configuration.Config, profile string, region st
 	line = "output" + " = " + output + "\n"
 	appendStringToFile(path, line)
 }
+
+func createConfigProfileFromCredentials(homeDir string, config *configuration.Config, profile string) {
+
+}
