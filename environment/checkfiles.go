@@ -91,3 +91,18 @@ func getAllRegions() (Regions []string) {
 	}
 	return
 }
+
+func getUserRegion(config *configuration.Config) string {
+	showAvailableRegions(config)
+	var numberRegion int
+	config.Logger.GetInput("Region", &numberRegion)
+
+	for numberRegion < 0 || numberRegion >= len(Regions) {
+		config.Logger.Always("Try again, invalid region")
+		config.Logger.GetInput("Region", &numberRegion)
+	}
+
+	region := Regions[numberRegion]
+	config.Logger.Always("Your region is: " + region)
+	return region
+}
