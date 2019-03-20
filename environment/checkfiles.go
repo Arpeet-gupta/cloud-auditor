@@ -108,5 +108,9 @@ func getUserRegion(config *configuration.Config) string {
 }
 
 func showAvailableRegions(config *configuration.Config) {
-	
+	config.Logger.Always("Available Regions:")
+	for i := 0; i < len(Regions); i++ {
+		pom := strconv.Itoa(i)
+		config.Logger.Always("Number " + pom + " region " + Regions[i])
+	}
 }
