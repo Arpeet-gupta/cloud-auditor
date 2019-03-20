@@ -22,6 +22,7 @@ func CreateAWSCredentialsFile(config *configuration.Config, profile string) {
 		if pathError != nil {
 			config.Logger.Error(pathError.Error())
 		}
+
 		path := homePath + "/.aws/credentials"
 		line := "\n[" + profile + "-long-term" + "]\n"
 		appendStringToFile(path, line)
@@ -38,10 +39,12 @@ func CreateAWSConfigFile(config *configuration.Config, profile string, region st
 	if output == "" {
 		output = getUserOutput(config)
 	}
+
 	homePath, pathError := GetUserHomeDir()
 	if pathError != nil {
 		config.Logger.Error(pathError.Error())
 	}
+
 	path := homePath + "/.aws/config"
 	line := "\n[" + profile + "]\n"
 	appendStringToFile(path, line)
@@ -71,5 +74,10 @@ func setProfileInfoAndCreateConfigFile(config *configuration.Config) (profile st
 		region := "us-east-1"
 		profile = "default"
 		CreateAWSConfigFile(config, profile, region, "JSON")
+	} else {
+		profile = getUserProfile(config)
+		region := getUserRegion(config)
+		CreateAWSConfigFile(config, profile, region, "")
 	}
+	return profile
 }
