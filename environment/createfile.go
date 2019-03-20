@@ -35,5 +35,11 @@ func CreateAWSCredentialsFile(config *configuration.Config, profile string) {
 }
 
 func CreateAWSConfigFile(config *configuration.Config, profile string, region string, output string) {
-
+	if output == "" {
+		output = getUserOutput(config)
+	}
+	homePath, pathError := GetUserHomeDir()
+	if pathError != nil {
+		config.Logger.Error(pathError.Error())
+	}
 }
