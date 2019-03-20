@@ -7,3 +7,7 @@ import (
 	"os"
 	"strings"
 )
+
+func CreateAWSCredentialsFile(config *configuration.Config, profile string) {
+
+}
