@@ -63,3 +63,7 @@ func createConfigProfileFromCredentials(homeDir string, config *configuration.Co
 	region := getUserRegion(config)
 	CreateAWSConfigFile(config, profile, region, "")
 }
+
+func setProfileInfoAndCreateConfigFile(config *configuration.Config) (profile string) {
+
+}
