@@ -46,5 +46,10 @@ func LoadResources(config *configuration.Config, region string, resources ...Res
 }
 
 func SaveToFile(r Resource, filename string) error {
-	
+	b, err := json.MarshalIndent(r, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	return ioutil.WriteFile(filename, b, 0644)
 }
