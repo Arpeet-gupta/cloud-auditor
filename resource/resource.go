@@ -36,4 +36,11 @@ func LoadResources(config *configuration.Config, region string, resources ...Res
 			errs <- r.LoadFromAWS(config, region)
 		}(r)
 	}
+
+	for err := range errs {
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
