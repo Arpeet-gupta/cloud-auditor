@@ -24,4 +24,9 @@ func LoadResources(config *configuration.Config, region string, resources ...Res
 	n := len(resources)
 	wg.Add(n)
 	errs := make(chan error, n)
+	
+	go func() {
+		wg.Wait()
+		close(errs)
+	}()
 }
