@@ -136,3 +136,13 @@ func getUserProfile(config *configuration.Config) string {
 	config.Logger.Always("Your region is: " + profile)
 	return profile
 }
+
+func getProfilesFromFile(config *configuration.Config, path string) []string {
+	credentials, credentialsError := os.Open(path)
+	if credentialsError != nil {
+		config.Logger.Error(credentialsError.Error())
+		return []string{}
+	}
+	defer credentials.Close()
+	profiles := make([]string, 0)
+}
