@@ -28,4 +28,9 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 	if credentialsError != nil {
 		config.Logger.Error(credentialsError.Error())
 	}
+
+	profile := config.Profile
+	if configAWSExists {
+		
+	}
 }
