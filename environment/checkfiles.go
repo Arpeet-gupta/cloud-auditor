@@ -106,3 +106,7 @@ func getUserRegion(config *configuration.Config) string {
 	config.Logger.Always("Your region is: " + region)
 	return region
 }
+
+func showAvailableRegions(config *configuration.Config) {
+	
+}
