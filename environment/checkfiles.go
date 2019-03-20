@@ -83,3 +83,11 @@ func isCredentialsPresent(homePath string) (bool, error) {
 	}
 	return true, nil
 }
+
+func getAllRegions() (Regions []string) {
+	rs, _ := endpoints.RegionsForService(endpoints.DefaultPartitions(), endpoints.AwsPartitionID, endpoints.ApigatewayServiceID)
+	for region := range rs {
+		Regions = append(Regions, region)
+	}
+	return
+}
