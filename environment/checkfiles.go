@@ -43,6 +43,8 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 				return false
 			}
 		}
-		
+		if credentialsExists {
+			addProfileToCredentials(profile, homeDir, config)
+		}
 	}
 }
