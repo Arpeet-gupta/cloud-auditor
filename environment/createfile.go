@@ -83,5 +83,8 @@ func setProfileInfoAndCreateConfigFile(config *configuration.Config) (profile st
 }
 
 func addProfileToCredentials(profile string, homePath string, config *configuration.Config) {
-	
+	profilesInCredentials := getProfilesFromFile(config, homePath+"/.aws/credentials")
+	if !helpers.SliceContains(profilesInCredentials, profile) {
+		CreateAWSCredentialsFile(config, profile)
+	}
 }
