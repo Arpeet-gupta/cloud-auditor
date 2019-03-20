@@ -95,6 +95,10 @@ func appendStringToFile(path, text string) error {
 		return err
 	}
 	defer f.Close()
-	
+
 	_, err = f.WriteString(text)
+	if err != nil {
+		return err
+	}
+	return nil
 }
