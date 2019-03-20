@@ -48,5 +48,17 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 		} else {
 			CreateAWSCredentialsFile(config, profile)
 		}
+	} else {
+		if credentialsExists {
+			var ans string
+			config.Logger.GetInput("File .aws/config does not exist, but .aws/credentials has been found. Do you want to create config file using one of the profiles in the .aws/credentias? *y* / *n*", &ans)
+			if strings.ToUpper(ans) == "y" {
+				createConfigProfileFromCredentials(homeDir, config, profile)
+				return true
+			} else {
+				profile = setProfileInfoAndCreateConfigFile(config)
+				CreateAWSCredentialsFile(config, profile)
+			}
+		}
 	}
 }
