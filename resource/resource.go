@@ -44,3 +44,7 @@ func LoadResources(config *configuration.Config, region string, resources ...Res
 	}
 	return nil
 }
+
+func SaveToFile(r Resource, filename string) error {
+	
+}
