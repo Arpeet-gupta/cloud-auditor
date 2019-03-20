@@ -114,3 +114,12 @@ func showAvailableRegions(config *configuration.Config) {
 		config.Logger.Always("Number " + pom + " region " + Regions[i])
 	}
 }
+
+func getUserOutput(config *configuration.Config) string {
+	var output string
+	config.Logger.GetInput("Input the output format [json, text, table]", &output)
+	for !helpers.SliceContains([]string{"json", "text", "table"}, output) {
+		config.Logger.Always("Try again, invalid output")
+		config.Logger.GetInput("Input the output format [json, text, table]", &output)
+	}
+}
