@@ -90,4 +90,8 @@ func addProfileToCredentials(profile string, homePath string, config *configurat
 }
 
 func appendStringToFile(path, text string) error {
+	f, err := os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		return err
+	}
 }
