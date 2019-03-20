@@ -146,4 +146,19 @@ func getProfilesFromFile(config *configuration.Config, path string) []string {
 	defer credentials.Close()
 	profiles := make([]string, 0)
 	scanner := bufio.NewScanner(credentials)
+
+	for scanner.Scan(
+		if strings.Contains(scanner.Text(), "[") {
+			profile := strings.TrimPrefix(scanner.Text(), "[")
+			profile = strings.TrimSuffix(profile, "]")
+			if strings.Contains(profile, "profile ") {
+				profile = strings.TrimPrefix(profile, "profile ")
+			}
+			if strings.Contains(profile, "-long-term") {
+				profile = strings.TrimSuffix(profile, "-long-term")
+			}
+			profiles = append(profiles, profile)
+		}
+	)
+	return profiles
 }
