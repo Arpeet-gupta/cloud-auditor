@@ -125,3 +125,7 @@ func getUserOutput(config *configuration.Config) string {
 	config.Logger.Always("Your output is: " + output)
 	return output
 }
+
+func getUserProfile(config *configuration.Config) string {
+	
+}
