@@ -20,5 +20,10 @@ func LoadResource(r Resource, config *configuration.Config, region string) error
 }
 
 func LoadResources(config *configuration.Config, region string, resources ...Resource) error {
-	
+	err := r.LoadFromAWS(config, region)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
