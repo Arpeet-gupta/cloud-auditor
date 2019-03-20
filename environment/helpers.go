@@ -13,3 +13,8 @@ func GetUserHomeDir() (string, error) {
 
 	return path, nil
 }
+
+func UniqueNonEmptyElementsOf(s []string) []string {
+	unique := make(map[string]bool, len(s))
+	us := make([]string, len(unique))
+}
