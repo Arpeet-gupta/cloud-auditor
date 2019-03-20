@@ -53,3 +53,7 @@ func SaveToFile(r Resource, filename string) error {
 
 	return ioutil.WriteFile(filename, b, 0644)
 }
+
+func LoadFromFile(r Resource, filename string) error {
+
+}
