@@ -67,3 +67,11 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 	}
 	return true
 }
+
+func isAWSConfigPresent(homePath string) (bool, error) {
+	_, credentialsError := os.Open(homePath + "/.aws/config")
+	if credentialsError != nil {
+		return false, nil
+	}
+	return true, nil
+}
