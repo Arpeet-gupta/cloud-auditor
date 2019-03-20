@@ -18,9 +18,14 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 		config.Logger.Error(pathError.Error())
 		return false
 	}
-	
+
 	configAWSExists, configError := isAWSConfigPresent(homeDir)
 	if configError != nil {
 		config.Logger.Error(configError.Error())
+	}
+
+	credentialsExists, credentialsError := isCredentialsPresent(homeDir)
+	if credentialsError != nil {
+		config.Logger.Error(credentialsError.Error())
 	}
 }
