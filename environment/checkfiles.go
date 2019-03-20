@@ -127,5 +127,12 @@ func getUserOutput(config *configuration.Config) string {
 }
 
 func getUserProfile(config *configuration.Config) string {
-	
+	var profile string
+	config.Logger.GetInput("Input name of profile", &profile)
+	for profile == "" {
+		config.Logger.Always("Try again, invalid profile")
+		config.Logger.GetInput("Input name of profile", &profile)
+	}
+	config.Logger.Always("Your region is: " + profile)
+	return profile
 }
