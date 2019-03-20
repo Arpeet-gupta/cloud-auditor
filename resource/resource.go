@@ -55,5 +55,11 @@ func SaveToFile(r Resource, filename string) error {
 }
 
 func LoadFromFile(r Resource, filename string) error {
+	bytes, err := ioutil.ReadFile(filename)
 
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(bytes, r)
 }
