@@ -31,6 +31,10 @@ func CheckAWSConfigFiles(config *configuration.Config) bool {
 
 	profile := config.Profile
 	if configAWSExists {
-		
+		profilesInConfig := getProfilesFromFile(config, homeDir+"/.aws/config")
+		if !helpers.SliceContains(profilesInConfig, profile) {
+			var ans string
+			config.Logger.GetInput("You don't have the "+profile+" profile in your config file. Would you like to create one? *y* / *n*", &ans)
+		}
 	}
 }
