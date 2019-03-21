@@ -30,8 +30,6 @@ func CreateAWSCredentialsFile(config *configuration.Config, profile string) {
 		appendStringToFile(path, line)
 		line = "aws_secret_access_key" + " = " + awsSecretAccessKey + "\n"
 		appendStringToFile(path, line)
-		line = "mfa_serial" + " = " + mfaSerial + "\n"
-		appendStringToFile(path, line)
 	}
 }
 
