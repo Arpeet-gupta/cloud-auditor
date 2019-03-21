@@ -72,5 +72,26 @@ func (k *KMSKeys) LoadAllFromAWS(config *configuration.Config) error {
 }
 
 func loadKeyListEntries(kmsAPI clientfactory.KmsClient, keyListEntries *KMSKeysListEntries, done chan bool, errc chan error, wg *sync.WaitGroup) {
-	
+	defer wg.Done()
+	q := &kms.ListKeysInput{}
+	for {
+		result, err := kmsAPI.ListKeys(q)
+		if err != nil {
+			if aerr, ok := err.(awserr.Error); ok {
+				switch aerr.Code() {
+					case "SubscriptionRequiredException":
+						done <- true
+					default:
+						errc <- fmt.Errorf("[AWS-ERROR] Error Msg: %s", aerr.Error())
+				}
+			} else {
+				errc <- fmt.Errorf("[ERROR] Error Msg: %s", err.Error())
+			}
+			return
+		}
+		if len(result.Keys) == 0 {
+			done <- true
+			return
+		}
+	}
 }
