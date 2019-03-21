@@ -15,3 +15,7 @@ type SortableTags struct {
 func NewSortableTags() *SortableTags {
 	return &SortableTags{Tags: make(map[string]string)}
 }
+
+func (st *SortableTags) Add(tags []*ec2.Tag) {
+
+}
