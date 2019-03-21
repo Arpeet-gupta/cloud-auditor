@@ -64,4 +64,5 @@ func getRegions() *[]string {
 	if region != "" {
 		return &[]string{region}
 	}
+	return csasession.GetAvailableRegions()
 }
