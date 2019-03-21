@@ -8,6 +8,10 @@ import (
 )
 
 func Run(config *configuration.Config) error {
-
+	for _, service := range *config.Services {
+		switch strings.ToLower(service) {
+			
+		}
+	}
 }
 
