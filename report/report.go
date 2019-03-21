@@ -38,4 +38,11 @@ func Title(name string) string {
 	origLen := len(name)
 	name = strings.Replace(name, "_", " ", -1)
 	//name = strings.Replace(name, ".", " ", -1)
+	name = strings.TrimSpace(name)
+	if len(name) == 0 && origLen > 0 {
+		// Keep at least one character. This is important to preserve
+		// empty lines in multi-line headers/footers.
+		name = " "
+	}
+	return strings.ToUpper(name)
 }
