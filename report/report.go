@@ -29,6 +29,7 @@ func PrintTable(r Report) {
 
 func customFormatHeaders(headers []string) []string {
 	for i, header := range headers {
-		
+		headers[i] = Title(header)
 	}
+	return headers
 }
