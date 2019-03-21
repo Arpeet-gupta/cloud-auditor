@@ -122,4 +122,9 @@ func sortTableData(data [][]string) [][]string {
 	}
 	var regions []string
 	var sortedData [][]string
+
+	for _, regs := range data {
+		reg := regs[0][:len(regs[0])-1]
+		regions = append(regions, reg)
+	}
 }
