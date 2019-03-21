@@ -20,28 +20,6 @@ func Run(config *configuration.Config) error {
 			}
 			ec2Reports.GenerateReport(resources)
 			report.PrintTable(&ec2Reports)
-		case "s3":
-			config.Logger.Info("Gathering information about S3s...")
-			s3BucketReports := report.S3BucketReports{}
-			resources, err := s3BucketReports.GetResources(config)
-			if err != nil {
-				return err
-			}
-			s3BucketReports.GenerateReport(resources)
-			report.PrintTable(&s3BucketReports)
-		case "iam":
-			config.Logger.Info("Gathering information about IAM...")
-			iamReports := report.IAMReports{}
-			resources, err := iamReports.GetResources(config)
-			if err != nil {
-				return err
-			}
-			iamReports.GenerateReport(resources)
-			report.PrintTable(&iamReports)
-
-			iamChecklist := report.IAMChecklist{}
-			iamChecklist.GenerateReport(resources)
-			report.PrintTable(&iamChecklist)
 
 		default:
 			return fmt.Errorf("Wrong service name: %s", service)
