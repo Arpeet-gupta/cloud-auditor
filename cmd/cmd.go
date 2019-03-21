@@ -86,3 +86,7 @@ func getProfile() string {
 
 	return "default"
 }
+
+func initConfig() {
+
+}
