@@ -11,3 +11,7 @@ type SortableTags struct {
 	Tags map[string]string
 	Keys []string
 }
+
+func NewSortableTags() *SortableTags {
+	return &SortableTags{Tags: make(map[string]string)}
+}
