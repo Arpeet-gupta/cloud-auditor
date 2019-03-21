@@ -63,6 +63,8 @@ const (
 func (et EncryptionType) String() string {
 	types := [...]string{"NONE", "AES256", "DKMS", "CKMS"}
 	if et < NONE || et > CKMS {
-		
+		return "Unknown"
 	}
+	return types[et]
 }
+
