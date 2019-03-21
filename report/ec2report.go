@@ -115,3 +115,9 @@ func SliceOfStringsToString(slice []string) string {
 	buffer.WriteString(slice[n-1])
 	return buffer.String()
 }
+
+func sortTableData(data [][]string) [][]string {
+	if data[0][0] == "" {
+		return data
+	}
+}
