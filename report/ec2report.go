@@ -9,3 +9,11 @@ import (
 	"strconv"
 	"strings"
 )
+
+type Ec2Report struct {
+	VolumeReport      *VolumeReport
+	InstanceID        string
+	SortableTags      *SortableTags
+	SecurityGroupsIDs []string
+	AvailabilityZone  string
+}
