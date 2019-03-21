@@ -108,4 +108,10 @@ func SliceOfStringsToString(slice []string) string {
 	if n == 0 {
 		return ""
 	}
+	var buffer bytes.Buffer
+	for _, s := range slice[:n-1] {
+		buffer.WriteString(s + "\n")
+	}
+	buffer.WriteString(slice[n-1])
+	return buffer.String()
 }
