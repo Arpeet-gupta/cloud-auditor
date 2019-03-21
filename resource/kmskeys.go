@@ -162,4 +162,8 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 				return err
 		}
 	}
+
+	k.loadValuesToMap(kmsKeyAliases, kmsKeyListEntries)
+
+	return nil
 }
