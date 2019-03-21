@@ -143,5 +143,9 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 	errc := make(chan error, n)
 	wg.Add(n)
 
-	
+	go func() {
+		wg.Wait()
+		close(done)
+		close(errc)
+	}()
 }
