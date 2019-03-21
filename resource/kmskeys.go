@@ -188,3 +188,7 @@ func (k *KMSKeys) loadValuesToMap(aliases *KMSKeyAliases, keyListEntries *KMSKey
 		k.Values[*keyListEntry.KeyArn] = &key
 	}
 }
+
+func (k *KMSKeys) FindByKeyArn(keyArn string) *KMSKey {
+
+}
