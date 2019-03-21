@@ -74,6 +74,7 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 				}
 			}
 		}
+
 		for _, sg := range ec2.SecurityGroups {
 			ipPermissions := r.SecurityGroups.GetIpPermissionsByID(*sg.GroupId)
 			if ipPermissions != nil {
