@@ -44,7 +44,7 @@ func Execute() {
 		config.Logger.Error(err.Error())
 		os.Exit(1)
 	}
-	defer err.Close()
+	defer err.Body.Close()
 }
 
 var (
