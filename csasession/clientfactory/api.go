@@ -1,4 +1,4 @@
-package client
+package clientfactory
 
 import (
 	"github.com/iamabhishek-dubey/cloud-auditor/csasession"
