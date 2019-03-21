@@ -127,4 +127,14 @@ func sortTableData(data [][]string) [][]string {
 		reg := regs[0][:len(regs[0])-1]
 		regions = append(regions, reg)
 	}
+	sort.Strings(regions)
+	uniqueregions := environment.UniqueNonEmptyElementsOf(regions)
+	for _, unique := range uniqueregions {
+		for _, b := range data {
+			if strings.Contains(b[0], unique) {
+				sortedData = append(sortedData, b)
+			}
+		}
+	}
+	return sortedData
 }
