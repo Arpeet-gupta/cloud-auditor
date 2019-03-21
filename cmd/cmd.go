@@ -21,7 +21,14 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		_, ok := os.LookupEnv("AWS_LAMBDA_FUNCTION_NAME") // If csa is running on lambda then env will be available. In other case csa needs config files.
 		if !ok {
-			
+			if environment.CheckAWSConfigFiles(&config) {
+				err := scanner.Run(&config)
+				if err != nil {
+					config.Logger.Error(err.Error())
+				}
+			}
+		} else {
+			err := scanner.Run(&config)
 		}
 	}
 }
