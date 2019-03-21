@@ -122,5 +122,10 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 			return
 		}
 		aliases = append(*aliases, result.Aliases...)
+
+		if !*result.Truncated {
+			done <- true
+			break
+		}
 	}
 }
