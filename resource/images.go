@@ -1,6 +1,7 @@
 package resource
 
 import (
+	"sort"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
 	"github.com/iamabhishek-dubey/cloud-auditor/csasession"
 	"github.com/aws/aws-sdk-go/aws"
