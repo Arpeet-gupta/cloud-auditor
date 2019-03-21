@@ -74,3 +74,7 @@ func getServices() *[]string {
 
 	return resource.GetAvailableServices()
 }
+
+func getProfile() string {
+	
+}
