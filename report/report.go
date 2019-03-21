@@ -48,3 +48,15 @@ func Title(name string) string {
 }
 
 type EncryptionType int
+
+const (
+	// NONE : No Encryption
+	NONE EncryptionType = 0
+	// AES256 : 256-bit Advanced Encryption Standard
+	AES256 EncryptionType = 1
+	// DKMS : Encrypted with default KMS Key
+	DKMS EncryptionType = 2
+	// CKMS : Encrypted with Custom KMS Key
+	CKMS EncryptionType = 3
+)
+
