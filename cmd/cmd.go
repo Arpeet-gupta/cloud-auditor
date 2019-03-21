@@ -68,5 +68,7 @@ func getRegions() *[]string {
 }
 
 func getServices() *[]string {
-	
+	if service != "" {
+		return &[]string{service}
+	}
 }
