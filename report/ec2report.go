@@ -48,6 +48,8 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			if !*volume.Encrypted {
 				ec2OK = false
 				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE)
+			} else {
+				kmskey := r.KMSKeys.FindByKeyArn(*volume.KmsKeyId)
 			}
 		}
 	}
