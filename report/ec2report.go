@@ -44,7 +44,11 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 		ec2Report := NewEc2Report(*ec2.InstanceId)
 		ec2OK := true
 		for _, blockDeviceMapping := range ec2.BlockDeviceMappings {
-			
+			volume := r.Volumes.FindById(*blockDeviceMapping.Ebs.VolumeId)
+			if !*volume.Encrypted {
+				ec2OK = false
+				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE)
+			}
 		}
 	}
 }
