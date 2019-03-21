@@ -31,3 +31,9 @@ func NewKMSKeys() *KMSKeys {
 type KMSKeyAliases []*kms.AliasListEntry
 
 type KMSKeysListEntries []*kms.KeyListEntry
+
+// LoadAllFromAWS : Load KMS Keys from all regions
+func (k *KMSKeys) LoadAllFromAWS(config *configuration.Config) error {
+	regions := *csasession.GetAvailableRegions()
+	
+}
