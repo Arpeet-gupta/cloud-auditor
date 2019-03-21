@@ -120,4 +120,6 @@ func sortTableData(data [][]string) [][]string {
 	if data[0][0] == "" {
 		return data
 	}
+	var regions []string
+	var sortedData [][]string
 }
