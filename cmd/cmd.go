@@ -76,5 +76,7 @@ func getServices() *[]string {
 }
 
 func getProfile() string {
-	
+	if profile != "" {
+		return profile
+	}
 }
