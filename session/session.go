@@ -20,7 +20,6 @@ func CreateSession(config SessionConfig) (*session.Session, error) {
 			},
 			Profile: config.Profile,
 		})
-	)
 	return sess, err
 }
 
