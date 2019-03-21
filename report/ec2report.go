@@ -76,3 +76,8 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 		ec2Report.AvailabilityZone = *ec2.Placement.AvailabilityZone
 	}
 }
+
+// GetResources : Initialize and loads required resources to create ec2 report
+func (e *Ec2Reports) GetResources(config *configuration.Config) (*Ec2ReportRequiredResources, error) {
+
+}
