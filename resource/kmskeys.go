@@ -194,4 +194,5 @@ func (k *KMSKeys) FindByKeyArn(keyArn string) *KMSKey {
 	if ok {
 		return kmsKey
 	}
+	return nil
 }
