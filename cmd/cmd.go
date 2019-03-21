@@ -71,4 +71,6 @@ func getServices() *[]string {
 	if service != "" {
 		return &[]string{service}
 	}
+
+	return resource.GetAvailableServices()
 }
