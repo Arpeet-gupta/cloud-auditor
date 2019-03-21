@@ -35,5 +35,7 @@ func customFormatHeaders(headers []string) []string {
 }
 
 func Title(name string) string {
-	
+	origLen := len(name)
+	name = strings.Replace(name, "_", " ", -1)
+	//name = strings.Replace(name, ".", " ", -1)
 }
