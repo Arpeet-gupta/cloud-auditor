@@ -18,6 +18,24 @@ type Ec2Report struct {
 	AvailabilityZone  string
 }
 
+func NewEc2Report(instanceID string) *Ec2Report {
+	return &Ec2Report{
+		InstanceID:   instanceID,
+		VolumeReport: &VolumeReport{},
+		SortableTags: NewSortableTags(),
+	}
+}
+
+type Ec2Reports []*Ec2Report
+
+type Ec2ReportRequiredResources struct {
+	Ec2s             *resource.Ec2s
+	KMSKeys          *resource.KMSKeys
+	Volumes          *resource.Volumes
+	SecurityGroups   *resource.SecurityGroups
+	AvailabilityZone string
+}
+
 func (e *Ec2Reports) GetHeaders() []string {
 	return []string{"Availability\nZone", "EC2", "Volumes\n(None) - not encrypted\n(DKMS) - encrypted with default KMSKey", "Security\nGroups\n(Incoming CIDR = 0\x2E0\x2E0\x2E0/0)\nID : PROTOCOL : PORT", "EC2 Tags"}
 }
