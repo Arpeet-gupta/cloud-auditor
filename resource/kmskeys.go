@@ -108,5 +108,17 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 	listAliasesInput := &kms.ListAliasesInput{}
 	for {
 		result, err := kmsAPI.ListAliases(listAliasesInput)
+		if err != nil {
+			if aerr, ok := err.(awserr.Error); ok {
+				switch aerr.Code() {
+					case "SubscriptionRequiredException":
+						done <- true
+					default:
+						errc <- fmt.Errorf("[AWS-ERROR] Error Msg: %s", aerr.Error())
+				}
+			} else {
+				errc <- fmt.Errorf("[ERROR] Error Msg: %s", err.Error())
+			}
+		}
 	}
 }
