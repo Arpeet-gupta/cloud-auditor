@@ -69,6 +69,10 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 				}
 			}
 		}
-		
+		if !ec2OK {
+			ec2Report.SortableTags.Add(ec2.Tags)
+			*e = append(*e, ec2Report)
+		}
+		ec2Report.AvailabilityZone = *ec2.Placement.AvailabilityZone
 	}
 }
