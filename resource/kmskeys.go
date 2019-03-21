@@ -28,3 +28,6 @@ func NewKMSKeys() *KMSKeys {
 	return &KMSKeys{Values: make(map[string]*KMSKey)}
 }
 
+type KMSKeyAliases []*kms.AliasListEntry
+
+type KMSKeysListEntries []*kms.KeyListEntry
