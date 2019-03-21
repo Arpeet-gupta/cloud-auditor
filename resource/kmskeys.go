@@ -169,5 +169,10 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 }
 
 func (k *KMSKeys) loadValuesToMap(aliases *KMSKeyAliases, keyListEntries *KMSKeysListEntries) {
-
+	for _, keyListEntry := range *keyListEntries {
+		key := KMSKey{KeyId: *keyListEntry.KeyId}
+		for _, alias := range *aliases {
+			
+		}
+	}
 }
