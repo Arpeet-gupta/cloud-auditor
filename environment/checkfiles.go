@@ -159,5 +159,6 @@ func getProfilesFromFile(config *configuration.Config, path string) []string {
 			}
 			profiles = append(profiles, profile)
 		}
+	}
 	return profiles
 }
