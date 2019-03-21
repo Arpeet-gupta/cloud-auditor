@@ -45,5 +45,7 @@ func (st *SortableTags) ToTableData() string {
 		}
 		buffer.WriteString(key + ":" + st.Tags[key] + "\n")
 	}
+	buffer.WriteString(st.Keys[n-1] + ":" + st.Tags[st.Keys[n-1]])
+	return buffer.String()
 }
 
