@@ -102,3 +102,11 @@ func loadKeyListEntries(kmsAPI clientfactory.KmsClient, keyListEntries *KMSKeysL
 		q.Marker = result.NextMarker
 	}
 }
+
+func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done chan bool, errc chan error, wg *sync.WaitGroup) {
+	defer wg.Done()
+	listAliasesInput := &kms.ListAliasesInput{}
+	for {
+		result, err := kmsAPI.ListAliases(listAliasesInput)
+	}
+}
