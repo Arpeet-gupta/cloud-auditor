@@ -29,6 +29,13 @@ func (st *SortableTags) Add(tags []*ec2.Tag) {
 }
 
 func (st *SortableTags) ToTableData() string {
-
+	n := len(st.Keys)
+	if n == 0 {
+		return ""
+	}
+	var buffer bytes.Buffer
+	for _, key := range st.Keys[:n-1] {
+		maxWidth := 50
+	}
 }
 
