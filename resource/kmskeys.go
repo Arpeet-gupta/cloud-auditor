@@ -172,7 +172,18 @@ func (k *KMSKeys) loadValuesToMap(aliases *KMSKeyAliases, keyListEntries *KMSKey
 	for _, keyListEntry := range *keyListEntries {
 		key := KMSKey{KeyId: *keyListEntry.KeyId}
 		for _, alias := range *aliases {
-			
+			if alias.TargetKeyId != nil {
+				if key.KeyId == *alias.TargetKeyId {
+					key.AliasArn = *alias.AliasArn
+					key.AliasName = *alias.AliasName
+					if !strings.Contains(*alias.AliasName, "alias/aws/") {
+						key.Custom = true
+					}
+					break
+				}
+			} else {
+				key.Custom = true
+			}
 		}
 	}
 }
