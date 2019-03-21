@@ -5,8 +5,8 @@ import (
 	"strings"
 	"sync"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
-	"github.com/iamabhishek-dubey/cloud-auditor/session"
-	"github.com/iamabhishek-dubey/cloud-auditor/session/client"
+	"github.com/iamabhishek-dubey/cloud-auditor/csasession"
+	"github.com/iamabhishek-dubey/cloud-auditor/csasession/clientfactory"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/kms"
 )

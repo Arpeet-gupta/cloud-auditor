@@ -1,8 +1,8 @@
 package configuration
 
 import (
-	"github.com/iamabhishek-dubey/cloud-auditor/session/factory"
-	"github.com/iamabhishek-dubey/cloud-auditor/session/client"
+	"github.com/iamabhishek-dubey/cloud-auditor/csasession/sessionfactory"
+	"github.com/iamabhishek-dubey/cloud-auditor/csasession/clientfactory"
 	"github.com/iamabhishek-dubey/cloud-auditor/logger"
 )
 
@@ -23,3 +23,4 @@ func GetConfig() (config Config) {
 
 	return config
 }
+
