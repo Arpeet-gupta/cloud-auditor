@@ -10,3 +10,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
+
+type KMSKey struct {
+	AliasArn  string
+	AliasName string
+	Custom    bool
+	KeyId     string // the same as TargetKeyId in AliasListEntry
+}
