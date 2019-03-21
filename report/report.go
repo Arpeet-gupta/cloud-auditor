@@ -19,4 +19,10 @@ func PrintTable(r Report) {
 	table.SetReflowDuringAutoWrap(false)
 	table.SetAutoFormatHeaders(false)
 	table.SetHeader(customFormatHeaders(r.GetHeaders()))
+	//Configure Rows and Cells
+	table.SetRowSeparator("-")
+	table.SetRowLine(true)
+	table.SetAutoWrapText(false)
+	table.AppendBulk(data)
+	table.Render()
 }
