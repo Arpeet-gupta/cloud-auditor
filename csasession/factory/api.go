@@ -1,13 +1,13 @@
 package sessionfactory
 
 import (
-	"github.com/iamabhishek-dubey/cloud-auditor/session"
+	"github.com/iamabhishek-dubey/cloud-auditor/csasession"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 // GetSession returns cached AWS session. For faster AWS Config
-func (factory *SessionFactory) GetSession(config session.SessionConfig) (*session.Session, error) {
+func (factory *SessionFactory) GetSession(config csasession.SessionConfig) (*session.Session, error) {
 	factory.mutex.Lock()
 	defer factory.mutex.Unlock()
 	if sess, ok := factory.regionToSession[config.Region]; ok {
@@ -17,8 +17,8 @@ func (factory *SessionFactory) GetSession(config session.SessionConfig) (*sessio
 }
 
 // NewSession creates a new session and caches it.
-func (factory *SessionFactory) NewSession(config session.SessionConfig) (*session.Session, error) {
-	sess, err := session.CreateSession(config)
+func (factory *SessionFactory) NewSession(config csasession.SessionConfig) (*session.Session, error) {
+	sess, err := csasession.CreateSession(config)
 	if err != nil {
 		return nil, err
 	}
@@ -27,7 +27,7 @@ func (factory *SessionFactory) NewSession(config session.SessionConfig) (*sessio
 	return sess, nil
 }
 
-func (factory *SessionFactory) SetNormalizeBucketLocation(config session.SessionConfig) error {
+func (factory *SessionFactory) SetNormalizeBucketLocation(config csasession.SessionConfig) error {
 	sess, err := factory.GetSession(config)
 	if err != nil {
 		return err
@@ -36,10 +36,11 @@ func (factory *SessionFactory) SetNormalizeBucketLocation(config session.Session
 	return nil
 }
 
-func (factory *SessionFactory) ReinitialiseSession(config session.SessionConfig) (err error) {
+func (factory *SessionFactory) ReinitialiseSession(config csasession.SessionConfig) (err error) {
 	factory.mutex.Lock()
 	defer factory.mutex.Unlock()
 
 	_, err = factory.NewSession(config)
 	return
 }
+
