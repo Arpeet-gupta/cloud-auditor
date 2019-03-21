@@ -88,5 +88,7 @@ func getProfile() string {
 }
 
 func initConfig() {
-
+	config.Regions = getRegions()
+	config.Services = getServices()
+	config.Profile = getProfile()
 }
