@@ -50,4 +50,19 @@ func (k *KMSKeys) LoadAllFromAWS(config *configuration.Config) error {
 
 	kmsKeyAliases := &KMSKeyAliases{}
 	kmsKeyListEntries := &KMSKeysListEntries{}
+
+	for _, region := range regions {
+		kmsClient, err := config.ClientFactory.GetKmsClient(csasession.SessionConfig{Profile: config.Profile, Region: region})
+		if err != nil {
+			return err
+		}
+
+		go loadKeyListEntries(kmsClient, kmsKeyListEntries, done, errc, &wg)
+		go loadKeyAliases(kmsClient, kmsKeyAliases, done, errc, &wg)
+	}
+	for i := 0; i < n; i++ {
+		select {
+			
+		}
+	}
 }
