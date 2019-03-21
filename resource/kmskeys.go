@@ -154,4 +154,12 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 
 	go loadKeyListEntries(kmsAPI, kmsKeyListEntries, done, errc, &wg)
 	go loadKeyAliases(kmsAPI, kmsKeyAliases, done, errc, &wg)
+
+	for i := 0; i < n; i++ {
+		select {
+			case <-done:
+			case err := <-errc:
+				return err
+		}
+	}
 }
