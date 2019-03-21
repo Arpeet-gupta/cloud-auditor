@@ -79,4 +79,10 @@ func getProfile() string {
 	if profile != "" {
 		return profile
 	}
+
+	if profile, ok := os.LookupEnv("AWS_PROFILE"); ok {
+		return profile
+	}
+
+	return "default"
 }
