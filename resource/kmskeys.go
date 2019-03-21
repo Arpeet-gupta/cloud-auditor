@@ -127,5 +127,6 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 			done <- true
 			break
 		}
+		listAliasesInput.Marker = result.NextMarker
 	}
 }
