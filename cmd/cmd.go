@@ -59,3 +59,9 @@ func init() {
 
 	rootCmd.Flags().StringVarP(&profile, "profile", "p", "", "specify aws profile e.g. --profile appliscale")
 }
+
+func getRegions() *[]string {
+	if region != "" {
+		
+	}
+}
