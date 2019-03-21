@@ -148,4 +148,7 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 		close(done)
 		close(errc)
 	}()
+
+	kmsKeyAliases := &KMSKeyAliases{}
+	kmsKeyListEntries := &KMSKeysListEntries{}
 }
