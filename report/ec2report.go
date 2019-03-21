@@ -102,3 +102,10 @@ func (e *Ec2Reports) GetResources(config *configuration.Config) (*Ec2ReportRequi
 	}
 	return resources, nil
 }
+
+func SliceOfStringsToString(slice []string) string {
+	n := len(slice)
+	if n == 0 {
+		return ""
+	}
+}
