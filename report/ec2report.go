@@ -86,4 +86,19 @@ func (e *Ec2Reports) GetResources(config *configuration.Config) (*Ec2ReportRequi
 		SecurityGroups:   &resource.SecurityGroups{},
 		AvailabilityZone: "zone",
 	}
+
+	for _, region := range *config.Regions {
+		err := resource.LoadResources(
+			config,
+			region,
+			resources.Ec2s,
+			resources.KMSKeys,
+			resources.Volumes,
+			resources.SecurityGroups,
+		)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return resources, nil
 }
