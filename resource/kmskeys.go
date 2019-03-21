@@ -93,5 +93,12 @@ func loadKeyListEntries(kmsAPI clientfactory.KmsClient, keyListEntries *KMSKeysL
 			done <- true
 			return
 		}
+
+		*keyListEntries = append(*keyListEntries, result.Keys...)
+		if !*result.Truncated {
+			done <- true
+			break
+		}
+		q.Marker = result.NextMarker
 	}
 }
