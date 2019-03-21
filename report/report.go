@@ -60,3 +60,9 @@ const (
 	CKMS EncryptionType = 3
 )
 
+func (et EncryptionType) String() string {
+	types := [...]string{"NONE", "AES256", "DKMS", "CKMS"}
+	if et < NONE || et > CKMS {
+		
+	}
+}
