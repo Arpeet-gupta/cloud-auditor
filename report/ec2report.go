@@ -50,6 +50,16 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE)
 			} else {
 				kmskey := r.KMSKeys.FindByKeyArn(*volume.KmsKeyId)
+				if !kmskey.Custom {
+					ec2OK = false
+					ec2Report.VolumeReport.AddEBS(*volume.VolumeId, DKMS)
+				}
+			}
+		}
+		for _, sg := range ec2.SecurityGroups {
+			ipPermissions := r.SecurityGroups.GetIpPermissionsByID(*sg.GroupId)
+			if ipPermissions != nil {
+				
 			}
 		}
 	}
