@@ -119,6 +119,7 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 			} else {
 				errc <- fmt.Errorf("[ERROR] Error Msg: %s", err.Error())
 			}
+			return
 		}
 	}
 }
