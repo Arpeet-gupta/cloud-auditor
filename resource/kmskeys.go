@@ -62,7 +62,11 @@ func (k *KMSKeys) LoadAllFromAWS(config *configuration.Config) error {
 	}
 	for i := 0; i < n; i++ {
 		select {
-			
+			case <-done:
+			case err := <-errc:
+				return err
 		}
 	}
+	k.loadValuesToMap(kmsKeyAliases, kmsKeyListEntries)
+	return nil
 }
