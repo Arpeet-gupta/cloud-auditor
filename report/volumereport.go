@@ -12,5 +12,8 @@ func (v *VolumeReport) AddEBS(volumeID string, encryptionType EncryptionType) {
 }
 
 func (v *VolumeReport) ToTableData() string {
-
+	if len(*v) == 0 {
+		return ""
+	}
+	
 }
