@@ -62,6 +62,6 @@ func init() {
 
 func getRegions() *[]string {
 	if region != "" {
-		
+		return &[]string{region}
 	}
 }
