@@ -130,3 +130,7 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 		listAliasesInput.Marker = result.NextMarker
 	}
 }
+
+func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error {
+
+}
