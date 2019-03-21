@@ -66,3 +66,7 @@ func getRegions() *[]string {
 	}
 	return csasession.GetAvailableRegions()
 }
+
+func getServices() *[]string {
+	
+}
