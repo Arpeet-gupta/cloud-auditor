@@ -46,3 +46,5 @@ func Title(name string) string {
 	}
 	return strings.ToUpper(name)
 }
+
+type EncryptionType int
