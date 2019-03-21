@@ -2,7 +2,7 @@ package sessionfactory
 
 import (
 	"sync"
-	"github.com/aws/aws-sdk-go/session"
+	"github.com/aws/aws-sdk-go/aws/session"
 )
 
 // SessionFactory provides method for creation of service client. For ex:- EC2
