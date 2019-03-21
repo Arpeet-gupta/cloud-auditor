@@ -21,3 +21,20 @@ type Ec2Report struct {
 func (e *Ec2Reports) GetHeaders() []string {
 	return []string{"Availability\nZone", "EC2", "Volumes\n(None) - not encrypted\n(DKMS) - encrypted with default KMSKey", "Security\nGroups\n(Incoming CIDR = 0\x2E0\x2E0\x2E0/0)\nID : PROTOCOL : PORT", "EC2 Tags"}
 }
+
+func (e *Ec2Reports) FormatDataToTable() [][]string {
+	data := [][]string{}
+
+	for _, ec2Report := range *e {
+		row := []string{
+			ec2Report.AvailabilityZone,
+			ec2Report.InstanceID,
+			ec2Report.VolumeReport.ToTableData(),
+			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
+			ec2Report.SortableTags.ToTableData(),
+		}
+		data = append(data, row)
+	}
+	sortedData := sortTableData(data)
+	return sortedData
+}
