@@ -33,3 +33,7 @@ func customFormatHeaders(headers []string) []string {
 	}
 	return headers
 }
+
+func Title(name string) string {
+	
+}
