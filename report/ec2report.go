@@ -87,6 +87,7 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 					}
 				}
 			}
+			defer ipPermissions.Close()
 		}
 		if !ec2OK {
 			ec2Report.SortableTags.Add(ec2.Tags)
