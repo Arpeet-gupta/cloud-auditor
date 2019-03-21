@@ -70,3 +70,7 @@ func (k *KMSKeys) LoadAllFromAWS(config *configuration.Config) error {
 	k.loadValuesToMap(kmsKeyAliases, kmsKeyListEntries)
 	return nil
 }
+
+func loadKeyListEntries(kmsAPI clientfactory.KmsClient, keyListEntries *KMSKeysListEntries, done chan bool, errc chan error, wg *sync.WaitGroup) {
+	
+}
