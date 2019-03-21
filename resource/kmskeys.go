@@ -17,3 +17,8 @@ type KMSKey struct {
 	Custom    bool
 	KeyId     string // the same as TargetKeyId in AliasListEntry
 }
+
+type KMSKeys struct {
+	Values map[string]*KMSKey
+	sync.RWMutex
+}
