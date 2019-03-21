@@ -15,5 +15,13 @@ var config = configuration.GetConfig()
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "cloud-security-audit",
+	Use:   "cloud-auditor",
+	Short: "Scan for vulnerabilities in your AWS Account.",
+	Long:  `Scan for vulnerabilities in your AWS Account.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		_, ok := os.LookupEnv("AWS_LAMBDA_FUNCTION_NAME") // If csa is running on lambda then env will be available. In other case csa needs config files.
+		if !ok {
+			
+		}
+	}
 }
