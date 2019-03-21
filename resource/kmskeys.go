@@ -22,3 +22,9 @@ type KMSKeys struct {
 	Values map[string]*KMSKey
 	sync.RWMutex
 }
+
+// NewKMSKeys : Initialize KMS Keys struct with map of keys
+func NewKMSKeys() *KMSKeys {
+	return &KMSKeys{Values: make(map[string]*KMSKey)}
+}
+
