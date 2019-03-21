@@ -132,5 +132,8 @@ func loadKeyAliases(kmsAPI clientfactory.KmsClient, aliases *KMSKeyAliases, done
 }
 
 func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error {
-
+	kmsAPI, err := config.ClientFactory.GetKmsClient(csasession.SessionConfig{Profile: config.Profile, Region: region})
+	if err != nil {
+		return err
+	}
 }
