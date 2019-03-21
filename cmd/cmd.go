@@ -29,6 +29,21 @@ var rootCmd = &cobra.Command{
 			}
 		} else {
 			err := scanner.Run(&config)
+			if err != nil {
+				config.Logger.Error(err.Error())
+			}
 		}
+	},
+}
+
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		config.Logger.Error(err.Error())
+		os.Exit(1)
 	}
 }
+
+var (
+	
+)
