@@ -76,8 +76,8 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 		}
 
 		for _, sg := range ec2.SecurityGroups {
-			ipPermissions, err := r.SecurityGroups.GetIpPermissionsByID(*sg.GroupId)
-			if err == nil {
+			ipPermissions := r.SecurityGroups.GetIpPermissionsByID(*sg.GroupId)
+			if ipPermissions != nil {
 				for _, ipPermission := range ipPermissions {
 					for _, ipRange := range ipPermission.IpRanges {
 						if *ipRange.CidrIp == "0.0.0.0/0" {
@@ -87,7 +87,6 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 					}
 				}
 			}
-			defer ipPermissions.Close()
 		}
 		if !ec2OK {
 			ec2Report.SortableTags.Add(ec2.Tags)
