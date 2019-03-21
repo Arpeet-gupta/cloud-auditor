@@ -17,6 +17,7 @@ func NewSortableTags() *SortableTags {
 }
 
 func (st *SortableTags) Add(tags []*ec2.Tag) {
+	
 	for _, tag := range tags {
 		st.Keys = append(st.Keys, *tag.Key)
 		st.Tags[*tag.Key] = *tag.Value
