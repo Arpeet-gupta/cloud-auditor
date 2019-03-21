@@ -26,3 +26,9 @@ func PrintTable(r Report) {
 	table.AppendBulk(data)
 	table.Render()
 }
+
+func customFormatHeaders(headers []string) []string {
+	for i, header := range headers {
+		
+	}
+}
