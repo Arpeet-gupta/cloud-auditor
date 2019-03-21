@@ -185,5 +185,6 @@ func (k *KMSKeys) loadValuesToMap(aliases *KMSKeyAliases, keyListEntries *KMSKey
 				key.Custom = true
 			}
 		}
+		k.Values[*keyListEntry.KeyArn] = &key
 	}
 }
