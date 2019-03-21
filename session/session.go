@@ -19,7 +19,7 @@ func CreateSession(config SessionConfig) (*session.Session, error) {
 				Region: &config.Region,
 			},
 			Profile: config.Profile,
-		}
+		})
 	)
 	return sess, err
 }
@@ -30,6 +30,6 @@ func GetAvailableRegions() *[]string {
 		"us-east-2",
 		"us-east-1",
 		"us-west-1",
-		"us-west-2"
+		"us-west-2",
 	}
 }
