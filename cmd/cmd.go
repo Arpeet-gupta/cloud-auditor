@@ -45,5 +45,11 @@ func Execute() {
 }
 
 var (
-	
+	region      string
+	service     string
+	profile     string
 )
+
+func init() {
+	
+}
