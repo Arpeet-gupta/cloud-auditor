@@ -17,4 +17,10 @@ func (v *VolumeReport) ToTableData() string {
 	}
 	var buffer bytes.Buffer
 	n := len(*v)
+	for _, volumeID := range (*v)[:n-1] {
+		buffer.WriteString(volumeID + "\n")
+	}
+	buffer.WriteString((*v)[n-1])
+	return buffer.String()
 }
+
