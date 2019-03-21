@@ -147,7 +147,7 @@ func getProfilesFromFile(config *configuration.Config, path string) []string {
 	profiles := make([]string, 0)
 	scanner := bufio.NewScanner(credentials)
 
-	for scanner.Scan()
+	for scanner.Scan() {
 		if strings.Contains(scanner.Text(), "[") {
 			profile := strings.TrimPrefix(scanner.Text(), "[")
 			profile = strings.TrimSuffix(profile, "]")
