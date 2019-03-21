@@ -38,3 +38,13 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	sortedData := sortTableData(data)
 	return sortedData
 }
+
+func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
+	for _, ec2 := range *r.Ec2s {
+		ec2Report := NewEc2Report(*ec2.InstanceId)
+		ec2OK := true
+		for _, blockDeviceMapping := range ec2.BlockDeviceMappings {
+			
+		}
+	}
+}
