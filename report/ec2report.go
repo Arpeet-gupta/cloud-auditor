@@ -79,5 +79,11 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 
 // GetResources : Initialize and loads required resources to create ec2 report
 func (e *Ec2Reports) GetResources(config *configuration.Config) (*Ec2ReportRequiredResources, error) {
-
+	resources := &Ec2ReportRequiredResources{
+		KMSKeys:          resource.NewKMSKeys(),
+		Ec2s:             &resource.Ec2s{},
+		Volumes:          &resource.Volumes{},
+		SecurityGroups:   &resource.SecurityGroups{},
+		AvailabilityZone: "zone",
+	}
 }
