@@ -13,4 +13,10 @@ type Report interface {
 
 func PrintTable(r Report) {
 	data := r.FormatDataToTable()
+
+	table := tablewriter.NewWriter(os.Stdout)
+	//Headers
+	table.SetReflowDuringAutoWrap(false)
+	table.SetAutoFormatHeaders(false)
+	table.SetHeader(customFormatHeaders(r.GetHeaders()))
 }
