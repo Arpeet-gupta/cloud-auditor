@@ -136,4 +136,12 @@ func (k *KMSKeys) LoadFromAWS(config *configuration.Config, region string) error
 	if err != nil {
 		return err
 	}
+
+	var wg sync.WaitGroup
+	n := 2
+	done := make(chan bool, n)
+	errc := make(chan error, n)
+	wg.Add(n)
+
+	
 }
