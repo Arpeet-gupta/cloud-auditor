@@ -8,6 +8,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"os"
+	"html/template"
 )
 
 type Ec2Report struct {
@@ -93,6 +95,14 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			*e = append(*e, ec2Report)
 		}
 		ec2Report.AvailabilityZone = *ec2.Placement.AvailabilityZone
+	}
+	paths := []string{
+		"view/report.html"
+	}
+	t := template.Must(template.New("view/index.html").ParseFiles(paths...))
+	err = t.Execute(os.Stdout, todos)
+	if err != nil {
+		panic(err)
 	}
 }
 
