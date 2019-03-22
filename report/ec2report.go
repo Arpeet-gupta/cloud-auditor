@@ -95,16 +95,13 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			*e = append(*e, ec2Report)
 		}
 		ec2Report.AvailabilityZone = *ec2.Placement.AvailabilityZone
-	}
 
-	paths := []string{
-		"view/report.html"
-	}
-
-	t := template.Must(template.New("view/index.html").ParseFiles(paths...))
-	err = t.Execute(os.Stdout, todos)
-	if err != nil {
-		panic(err)
+		data := PageData{
+			PageTitle: "Test Page",
+			Avz: *ec2Report.AvailabilityZone,
+		}
+		tmpl := template.Must(template.ParseFiles("view/layout.html"))
+		tmpl.Execute(w, data)
 	}
 }
 
