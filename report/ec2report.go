@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"os"
-	"html/template"
+//	"os"
+//	"html/template"
 )
 
 var (
@@ -53,6 +53,7 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
+	datas := [][]string{}
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -62,23 +63,24 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
 			ec2Report.SortableTags.ToTableData(),
 		}
-//		rows := []string{
-//		    ec2Report.AvailabilityZone,
-//		}
-		azs = ec2Report.AvailabilityZone
-		fmt.Println(azs)
-			datas := PageData{
-				PageTitle: "Test Page",
-				Avz: []string{
-					ec2Report.AvailabilityZone,
-				},
-			}
+		rows := []string{
+		    ec2Report.AvailabilityZone,
+		}
+		//fmt.Println(azs)
+//			datas := PageData{
+//				PageTitle: "Test Page",
+//				Avz: []string{
+//					azs,
+//				},
+//			}
 
-			tmpl := template.Must(template.ParseFiles("view/layout.html"))
-			tmpl.Execute(os.Stdout, datas)
+//			tmpl := template.Must(template.ParseFiles("view/layout.html"))
+//			tmpl.Execute(os.Stdout, datas)
 		data = append(data, row)
+		datas = append(datas, rows)
 	}
-
+	srtdata := sortTableData(datas)
+	fmt.Println(srtdata)
 	sortedData := sortTableData(data)
 	return sortedData
 }
