@@ -13,9 +13,6 @@ import (
 	"html/template"
 )
 
-var (
-	azs [][]string
-)
 
 type Ec2Report struct {
 	VolumeReport      *VolumeReport
@@ -27,7 +24,7 @@ type Ec2Report struct {
 
 type PageData struct {
 	PageTitle string
-	Avz       []string
+	Avz      []string
 }
 
 func NewEc2Report(instanceID string) *Ec2Report {
@@ -54,9 +51,10 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
-	datas := [][]string{}
+	azs := []string{}
+//	datas := [][]string{}
 
-	lsj := make(map[string][][]string)
+	//lsj := make(map[string][][]string)
 	for _, ec2Report := range *e {
 		row := []string{
 			ec2Report.AvailabilityZone,
@@ -66,42 +64,45 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			ec2Report.SortableTags.ToTableData(),
 		}
 //	for _, ec2Report := range *e {
-		rows := []string{
-		    ec2Report.AvailabilityZone,
-		}
-		datas = append(datas, rows)
-		fmt.Println(datas)
+                rows := ec2Report.AvailabilityZone
+		azs = append(azs, rows)
+//		fmt.Println(azs)
+	//	datas = append(datas, rows)
+	//	fmt.Println(datas)
 //	 }
 		//fmt.Println(azs)
 //			datas := PageData{
 //				PageTitle: "Test Page",
-//				Avz: []string{
-//					azs,
+//				Avz: [][]string{
+	//				azs,
 //				},
 //			}
 
 //			tmpl := template.Must(template.ParseFiles("view/layout.html"))
 //			tmpl.Execute(os.Stdout, datas)
 		data = append(data, row)
-		//fmt.Println(data)
+//		fmt.Println(data)
 		//datas = append(datas, rows)
 		//fmt.Println(datas)
 	}
-	srtdata := sortTableData(datas)
+//	fmt.Println(data)
+//	srtdata := sortTableData(datas)
 //	lsdata := srtdata.(map[string][][]string)
-        lsj["t"] = srtdata
-	azs = lsj["t"]
-	fmt.Println(lsj)
-//	lst :=  string(srtdata)
-//	fmt.Println(lst)
-	htdata := PageData{
+//        lsj["t"] = srtdata
+//	azs = lsj["t"]
+//	fmt.Println(lsj)
+//	
+ //       lst :=  string(srtdata)
+//	fmt.Println(azs)
+        htdata := PageData{
 	    PageTitle: "Hey",
 	    Avz: []string{
-	       "hi",
+	       azs,
 	    },
 	}
 	tmpl := template.Must(template.ParseFiles("view/layout.html"))
-	tmpl.Execute(os.Stdout, htdata)
+	result := tmpl.Execute(os.Stdout, htdata)
+	fmt.Println(result)
 	sortedData := sortTableData(data)
 	return sortedData
 }
