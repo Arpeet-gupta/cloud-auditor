@@ -9,12 +9,12 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-//	"os"
-//	"html/template"
+	"os"
+	"html/template"
 )
 
 var (
-	azs string
+	azs [][]string
 )
 
 type Ec2Report struct {
@@ -26,9 +26,10 @@ type Ec2Report struct {
 }
 
 type PageData struct {
-		PageTitle string
-		Avz       []string
-		}
+	PageTitle string
+	Avz       []string
+}
+
 func NewEc2Report(instanceID string) *Ec2Report {
 	return &Ec2Report{
 		InstanceID:   instanceID,
@@ -55,6 +56,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
 	datas := [][]string{}
 
+	lsj := make(map[string][][]string)
 	for _, ec2Report := range *e {
 		row := []string{
 			ec2Report.AvailabilityZone,
@@ -63,9 +65,13 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
 			ec2Report.SortableTags.ToTableData(),
 		}
+//	for _, ec2Report := range *e {
 		rows := []string{
 		    ec2Report.AvailabilityZone,
 		}
+		datas = append(datas, rows)
+		fmt.Println(datas)
+//	 }
 		//fmt.Println(azs)
 //			datas := PageData{
 //				PageTitle: "Test Page",
@@ -77,10 +83,25 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 //			tmpl := template.Must(template.ParseFiles("view/layout.html"))
 //			tmpl.Execute(os.Stdout, datas)
 		data = append(data, row)
-		datas = append(datas, rows)
+		//fmt.Println(data)
+		//datas = append(datas, rows)
+		//fmt.Println(datas)
 	}
 	srtdata := sortTableData(datas)
-	fmt.Println(srtdata)
+//	lsdata := srtdata.(map[string][][]string)
+        lsj["t"] = srtdata
+	azs = lsj["t"]
+	fmt.Println(lsj)
+//	lst :=  string(srtdata)
+//	fmt.Println(lst)
+	htdata := PageData{
+	    PageTitle: "Hey",
+	    Avz: []string{
+	       "hi",
+	    },
+	}
+	tmpl := template.Must(template.ParseFiles("view/layout.html"))
+	tmpl.Execute(os.Stdout, htdata)
 	sortedData := sortTableData(data)
 	return sortedData
 }

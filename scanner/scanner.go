@@ -19,6 +19,8 @@ func Run(config *configuration.Config) error {
 				return err
 			}
 			ec2Reports.GenerateReport(resources)
+			test := ec2Reports.GenerateReport(resources)
+			fmt.Println(test)
 			report.PrintTable(&ec2Reports)
 
 		default:
