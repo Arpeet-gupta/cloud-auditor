@@ -28,6 +28,7 @@ type PageData struct {
 	Idz      []string
 	Vlz      []string
 	Sgz      []string
+	Tgz      []string
 }
 
 func NewEc2Report(instanceID string) *Ec2Report {
@@ -58,6 +59,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	var ids []string
 	var vlr []string
 	var sgi []string
+	var tgs []string
 //	datas := [][]string{}
 
 	//lsj := make(map[string][][]string)
@@ -77,6 +79,8 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		vlr = append(vlr, rowsss)
 		rowssss := SliceOfStringsToString(ec2Report.SecurityGroupsIDs)
 		sgi = append(sgi, rowssss)
+		rowsssss := ec2Report.SortableTags.ToTableData()
+		tgs = append(tgs, rowsssss)
 	//	datas = append(datas, rows)
 	//	fmt.Println(datas)
 //	 }
@@ -100,6 +104,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	    Idz: ids,
 	    Vlz: vlr,
 	    Sgz: sgi,
+	    Tgz: tgs,
 	}
 	tmpl := template.Must(template.ParseFiles("view/layout.html"))
 	result := tmpl.Execute(os.Stdout, htdata)
