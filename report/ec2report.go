@@ -26,6 +26,7 @@ type PageData struct {
 	PageTitle string
 	Avz      []string
 	Idz      []string
+	Vlz      []string
 }
 
 func NewEc2Report(instanceID string) *Ec2Report {
@@ -54,6 +55,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
 	var azs []string
 	var ids []string
+	var vlr []string
 //	datas := [][]string{}
 
 	//lsj := make(map[string][][]string)
@@ -69,6 +71,8 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		azs = append(azs, rows)
 		rowss := ec2Report.InstanceID
 		ids = append(ids, rowss)
+		rowsss := ec2Report.VolumeReport.ToTableData()
+		vlr = append(vlr, rowsss)
 	//	datas = append(datas, rows)
 	//	fmt.Println(datas)
 //	 }
@@ -90,6 +94,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	    PageTitle: "Hey",
 	    Avz: azs,
 	    Idz: ids,
+	    Vlz: vlr,
 	}
 	tmpl := template.Must(template.ParseFiles("view/layout.html"))
 	result := tmpl.Execute(os.Stdout, htdata)
