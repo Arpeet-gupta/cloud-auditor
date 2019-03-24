@@ -51,7 +51,7 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
-	azs := []string{}
+	var azs []string
 //	datas := [][]string{}
 
 	//lsj := make(map[string][][]string)
@@ -96,9 +96,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 //	fmt.Println(azs)
         htdata := PageData{
 	    PageTitle: "Hey",
-	    Avz: []string{
-	       azs,
-	    },
+	    Avz: azs,
 	}
 	tmpl := template.Must(template.ParseFiles("view/layout.html"))
 	result := tmpl.Execute(os.Stdout, htdata)
