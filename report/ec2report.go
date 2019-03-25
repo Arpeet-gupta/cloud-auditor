@@ -96,9 +96,9 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		tgs = append(tgs, tgRows)
 	}
 
-	for _, joke := range dts {
-	    fmt.Println(joke)
-	}
+//	for _, joke := range dts {
+//	    fmt.Println(joke)
+//	}
         //fmt.Println(dts)
 	htdata := PageData{
 	    Avz: dts,
