@@ -21,6 +21,14 @@ type Ec2Report struct {
 	AvailabilityZone  string
 }
 
+type PageData struct {
+	Avz      []string
+	Idz      []string
+	Vlz      []string
+	Sgz      []string
+	Tgz      []string
+}
+
 func NewEc2Report(instanceID string) *Ec2Report {
 	return &Ec2Report{
 		InstanceID:   instanceID,
@@ -45,6 +53,11 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
+	var azs []string
+	var ids []string
+	var vlr []string
+	var sgi []string
+	var tgs []string
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -55,6 +68,21 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			ec2Report.SortableTags.ToTableData(),
 		}
 		data = append(data, row)
+
+		azRows := ec2Report.AvailabilityZone
+		azs = append(azs, azRows)
+		
+		idRows := ec2Report.InstanceID
+		ids = append(ids, idRows)
+
+		vlRows := ec2Report.VolumeReport.ToTableData()
+		vlr = append(vlr, vlRows)
+
+		sgRows := SliceOfStringsToString(ec2Report.SecurityGroupsIDs)
+		sgi = append(sgi, sgRows)
+
+		tgRows := ec2Report.SortableTags.ToTableData()
+		tgs = append(tgs, tgRows)
 	}
 	sortedData := sortTableData(data)
 	return sortedData
