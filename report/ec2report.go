@@ -84,6 +84,17 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		tgRows := ec2Report.SortableTags.ToTableData()
 		tgs = append(tgs, tgRows)
 	}
+
+	htdata := PageData{
+	    Avz: azs,
+	    Idz: ids,
+	    Vlz: vlr,
+	    Sgz: sgi,
+	    Tgz: tgs,
+	}
+	tmpl := template.Must(template.ParseFiles("view/layout.html"))
+	result := tmpl.Execute(os.Stdout, htdata)
+	fmt.Println(result)
 	sortedData := sortTableData(data)
 	return sortedData
 }
