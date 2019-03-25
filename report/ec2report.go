@@ -10,7 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"os"
-	"html/template"
+	"text/template"
+	"html"
 )
 
 type Ec2Report struct {
@@ -59,6 +60,10 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	var vlr []string
 	var sgi []string
 	var tgs []string
+	const starth = "<tr>"
+	const endh = "</tr>"
+	const tds = "<td>"
+	const tde = "</td>"
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -71,11 +76,23 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		data = append(data, row)
 
 		fts := []string{
+		   html.UnescapeString(starth),
+		   html.UnescapeString(tds),
 		   ec2Report.AvailabilityZone,
+		   html.UnescapeString(tde),
+		   html.UnescapeString(tds),
 		   ec2Report.InstanceID,
+		   html.UnescapeString(tde),
+		   html.UnescapeString(tds),
 		   ec2Report.VolumeReport.ToTableData(),
+		   html.UnescapeString(tde),
+		   html.UnescapeString(tds),
 		   SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
+		   html.UnescapeString(tde),
+		   html.UnescapeString(tds),
 		   ec2Report.SortableTags.ToTableData(),
+		   html.UnescapeString(tde),
+		   html.UnescapeString(endh),
 		}
 
 	        dts = append(dts, fts)
@@ -105,7 +122,6 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 //	    Idz: ids,
 //	    Vlz: vlr,
 //	    Sgz: sgi,
-//	    Tgz: tgs,
 	}
 	tmpl := template.Must(template.ParseFiles("htmlreports/ec2.html"))
 	result := tmpl.Execute(os.Stdout, htdata)
