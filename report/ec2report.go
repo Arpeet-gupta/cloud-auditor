@@ -22,7 +22,7 @@ type Ec2Report struct {
 }
 
 type PageData struct {
-	Avz      []string
+	Avz      [][]string
 	Idz      []string
 	Vlz      []string
 	Sgz      []string
@@ -52,7 +52,8 @@ func (e *Ec2Reports) GetHeaders() []string {
 }
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
-	data := [][]string{}
+	data :=  [][]string{}
+	dts := [][]string{}
 	var azs []string
 	var ids []string
 	var vlr []string
@@ -69,9 +70,19 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		}
 		data = append(data, row)
 
+		fts := []string{
+		   ec2Report.AvailabilityZone,
+		   ec2Report.InstanceID,
+		   ec2Report.VolumeReport.ToTableData(),
+		   SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
+		   ec2Report.SortableTags.ToTableData(),
+		}
+
+	        dts = append(dts, fts)
+
 		azRows := ec2Report.AvailabilityZone
 		azs = append(azs, azRows)
-		
+
 		idRows := ec2Report.InstanceID
 		ids = append(ids, idRows)
 
@@ -85,14 +96,18 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		tgs = append(tgs, tgRows)
 	}
 
-	htdata := PageData{
-	    Avz: azs,
-	    Idz: ids,
-	    Vlz: vlr,
-	    Sgz: sgi,
-	    Tgz: tgs,
+	for _, joke := range dts {
+	    fmt.Println(joke)
 	}
-	tmpl := template.Must(template.ParseFiles("view/layout.html"))
+        //fmt.Println(dts)
+	htdata := PageData{
+	    Avz: dts,
+//	    Idz: ids,
+//	    Vlz: vlr,
+//	    Sgz: sgi,
+//	    Tgz: tgs,
+	}
+	tmpl := template.Must(template.ParseFiles("htmlreports/ec2.html"))
 	result := tmpl.Execute(os.Stdout, htdata)
 	fmt.Println(result)
 	sortedData := sortTableData(data)
