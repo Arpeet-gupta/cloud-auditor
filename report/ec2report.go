@@ -1,7 +1,6 @@
 package report
 
 import (
-	"fmt"
 	"bytes"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
 	"github.com/iamabhishek-dubey/cloud-auditor/environment"
@@ -9,12 +8,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"os"
-	"html/template"
-)
-
-var (
-	azs string
 )
 
 type Ec2Report struct {
@@ -25,10 +18,6 @@ type Ec2Report struct {
 	AvailabilityZone  string
 }
 
-type PageData struct {
-		PageTitle string
-		Avz       []string
-		}
 func NewEc2Report(instanceID string) *Ec2Report {
 	return &Ec2Report{
 		InstanceID:   instanceID,
@@ -62,23 +51,8 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
 			ec2Report.SortableTags.ToTableData(),
 		}
-//		rows := []string{
-//		    ec2Report.AvailabilityZone,
-//		}
-		azs = ec2Report.AvailabilityZone
-		fmt.Println(azs)
-			datas := PageData{
-				PageTitle: "Test Page",
-				Avz: []string{
-					ec2Report.AvailabilityZone,
-				},
-			}
-
-			tmpl := template.Must(template.ParseFiles("view/layout.html"))
-			tmpl.Execute(os.Stdout, datas)
 		data = append(data, row)
 	}
-
 	sortedData := sortTableData(data)
 	return sortedData
 }
@@ -119,16 +93,7 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			*e = append(*e, ec2Report)
 		}
 		ec2Report.AvailabilityZone = *ec2.Placement.AvailabilityZone
-		//azs = *ec2.Placement.AvailabilityZone
-//		data := PageData{
-//			PageTitle: "Test Page",
-//			Avz: ec2Report.AvailabilityZone,
-//		}
-
-		//tmpl := template.Must(template.ParseFiles("view/layout.html"))
-		//tmpl.Execute(os.Stdout, data)
 	}
-//	fmt.Println(azs)
 }
 
 // GetResources : Initialize and loads required resources to create ec2 report
