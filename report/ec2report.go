@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"os"
-	"html/template"
+	"text/template"
 )
 
 type Ec2Report struct {
@@ -22,11 +22,7 @@ type Ec2Report struct {
 }
 
 type PageData struct {
-	Avz      []string
-	Idz      []string
-	Vlz      []string
-	Sgz      []string
-	Tgz      []string
+	Avz    [][]string
 }
 
 func NewEc2Report(instanceID string) *Ec2Report {
@@ -53,11 +49,11 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
-	var azs []string
-	var ids []string
-	var vlr []string
-	var sgi []string
-	var tgs []string
+	dts := [][]string{}
+	const starth = "<tr>"
+	const endh = "</tr>"
+	const tds = "<td>"
+	const tde = "</td>"
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -69,32 +65,34 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 		}
 		data = append(data, row)
 
-		azRows := ec2Report.AvailabilityZone
-		azs = append(azs, azRows)
-		
-		idRows := ec2Report.InstanceID
-		ids = append(ids, idRows)
-
-		vlRows := ec2Report.VolumeReport.ToTableData()
-		vlr = append(vlr, vlRows)
-
-		sgRows := SliceOfStringsToString(ec2Report.SecurityGroupsIDs)
-		sgi = append(sgi, sgRows)
-
-		tgRows := ec2Report.SortableTags.ToTableData()
-		tgs = append(tgs, tgRows)
+		fts := []string{
+			html.UnescapeString(starth),
+			html.UnescapeString(tds),
+			ec2Report.AvailabilityZone,
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.InstanceID,
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.VolumeReport.ToTableData(),
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.SortableTags.ToTableData(),
+			html.UnescapeString(tde),
+			html.UnescapeString(endh),
+		}
 	}
 
 	htdata := PageData{
-	    Avz: azs,
-	    Idz: ids,
-	    Vlz: vlr,
-	    Sgz: sgi,
-	    Tgz: tgs,
+	    Avz: dts,
 	}
-	tmpl := template.Must(template.ParseFiles("view/layout.html"))
-	result := tmpl.Execute(os.Stdout, htdata)
-	fmt.Println(result)
+	f, err := os.Create("htmlreports/ec2.html")
+	tmpl := template.Must(template.ParseFiles("htmlreports/ec2template.html"))
+	result := tmpl.Execute(f, htdata)
+	f.Close()
 	sortedData := sortTableData(data)
 	return sortedData
 }
