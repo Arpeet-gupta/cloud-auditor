@@ -1,6 +1,7 @@
 package report
 
 import (
+	"fmt"
 	"bytes"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
 	"github.com/iamabhishek-dubey/cloud-auditor/environment"
@@ -90,7 +91,12 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	htdata := PageData{
 	    Avz: dts,
 	}
-	f := os.Create("htmlreports/ec2.html")
+
+	f, err := os.Create("htmlreports/ec2.html")
+	if err != nil{
+		fmt.Println("create file: ", err)
+	}
+
 	tmpl := template.Must(template.ParseFiles("htmlreports/ec2template.html"))
 	tmpl.Execute(f, htdata)
 	f.Close()
