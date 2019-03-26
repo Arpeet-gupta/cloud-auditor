@@ -128,7 +128,7 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 				for _, ipPermission := range ipPermissions {
 					for _, ipRange := range ipPermission.IpRanges {
 						if *ipRange.CidrIp == "0.0.0.0/0" {
-							ec2Report.SecurityGroupsIDs = append(ec2Report.SecurityGroupsIDs, *sg.GroupId+" : "+*ipPermission.IpProtocol+" : "+strconv.FormatInt(*ipPermission.ToPort, 10))
+							ec2Report.SecurityGroupsIDs = append(ec2Report.SecurityGroupsIDs, *sg.GroupId+" : "+*ipPermission.IpProtocol+" : "+strconv.FormatInt(*ipPermission.ToPort, 10)+ " <br> ")
 							ec2OK = false
 						}
 					}
