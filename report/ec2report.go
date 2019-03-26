@@ -84,6 +84,7 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			html.UnescapeString(tde),
 			html.UnescapeString(endh),
 		}
+		dts = append(dts, fts)
 	}
 
 	htdata := PageData{
