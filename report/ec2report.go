@@ -123,8 +123,13 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 //	    Vlz: vlr,
 //	    Sgz: sgi,
 	}
+	f, err := os.Create("htmlreports/test.html")
+	if err != nil {
+	  fmt.Println("create file: ", err)
+	}
 	tmpl := template.Must(template.ParseFiles("htmlreports/ec2.html"))
-	result := tmpl.Execute(os.Stdout, htdata)
+	result := tmpl.Execute(f, htdata)
+	f.Close()
 	fmt.Println(result)
 	sortedData := sortTableData(data)
 	return sortedData

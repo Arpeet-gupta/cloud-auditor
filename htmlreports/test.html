@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Ot-Security(EC2)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="container">
+		<a href="index.html"><button class="btn btn-success">Back</button></a>
+		<img src="images/ot-security.png">
+
+		<h2 class="title">Ot-Security</h2>
+
+	<table class="greyGridTable">
+		<thead>
+			<tr>
+	            <th>Availibility Zone</th>
+	            <th>EC2</th>
+	            <th>Volumes</th>
+	            <th>Security</th>
+	            <th>EC2 Tags</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+		</tfoot>
+		<tbody>
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1c
+			
+			</td>
+			
+			<td>
+			
+			i-0d3ffdf6ad2c3a253
+			
+			</td>
+			
+			<td>
+			
+			vol-0970d09f6f3172234[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-02c139d0cab84cff1 : tcp : 26379 <br> 
+sg-02c139d0cab84cff1 : tcp : 22 <br> 
+sg-02c139d0cab84cff1 : tcp : 6379 <br> 
+sg-02c139d0cab84cff1 : tcp : 8089 <br> 
+sg-02c139d0cab84cff1 : tcp : 9100 <br> 
+sg-02c139d0cab84cff1 : tcp : 9121 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:redis-slave2
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1c
+			
+			</td>
+			
+			<td>
+			
+			i-044ba91b92fb458fc
+			
+			</td>
+			
+			<td>
+			
+			vol-0766a7f8405572269[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-02c139d0cab84cff1 : tcp : 26379 <br> 
+sg-02c139d0cab84cff1 : tcp : 22 <br> 
+sg-02c139d0cab84cff1 : tcp : 6379 <br> 
+sg-02c139d0cab84cff1 : tcp : 8089 <br> 
+sg-02c139d0cab84cff1 : tcp : 9100 <br> 
+sg-02c139d0cab84cff1 : tcp : 9121 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:redis-master
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1c
+			
+			</td>
+			
+			<td>
+			
+			i-0d2c2c409fc2f9cad
+			
+			</td>
+			
+			<td>
+			
+			vol-0d667db9e2b89ba9a[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-02c139d0cab84cff1 : tcp : 26379 <br> 
+sg-02c139d0cab84cff1 : tcp : 22 <br> 
+sg-02c139d0cab84cff1 : tcp : 6379 <br> 
+sg-02c139d0cab84cff1 : tcp : 8089 <br> 
+sg-02c139d0cab84cff1 : tcp : 9100 <br> 
+sg-02c139d0cab84cff1 : tcp : 9121 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:redis-slave1
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-0a715e6019080c62c
+			
+			</td>
+			
+			<td>
+			
+			vol-08f883ce15b06ab69[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-02b98aa9afc8b38d6 : tcp : 80 <br> 
+sg-02b98aa9afc8b38d6 : tcp : 22 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:nginx-codescanner-prod
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-0e44822af56f1c267
+			
+			</td>
+			
+			<td>
+			
+			vol-0c74d2e0397e6b0c5[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0662dfa300b244821 : tcp : 65535 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:sumit2
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-0a0f5860d8d273f85
+			
+			</td>
+			
+			<td>
+			
+			vol-0a61c5ca5e875c81d[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0662dfa300b244821 : tcp : 65535 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:sumit1
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-06be0bf2979ecfd76
+			
+			</td>
+			
+			<td>
+			
+			vol-0f1dca79a03d0030e[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0c4144342baff5c79 : tcp : 80 <br> 
+sg-0c4144342baff5c79 : tcp : 22 <br> 
+sg-0c4144342baff5c79 : tcp : 8083 <br> 
+sg-0c4144342baff5c79 : tcp : 443 <br> 
+sg-0c4144342baff5c79 : tcp : 2049 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:build-piper
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-01fa29fdd0e6107b4
+			
+			</td>
+			
+			<td>
+			
+			vol-096e097318d8a4c08[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0c4144342baff5c79 : tcp : 80 <br> 
+sg-0c4144342baff5c79 : tcp : 22 <br> 
+sg-0c4144342baff5c79 : tcp : 8083 <br> 
+sg-0c4144342baff5c79 : tcp : 443 <br> 
+sg-0c4144342baff5c79 : tcp : 2049 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:okts-test
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-07c4c6849e6765d98
+			
+			</td>
+			
+			<td>
+			
+			vol-0a5334579af0fc8ce[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0c4144342baff5c79 : tcp : 80 <br> 
+sg-0c4144342baff5c79 : tcp : 22 <br> 
+sg-0c4144342baff5c79 : tcp : 8083 <br> 
+sg-0c4144342baff5c79 : tcp : 443 <br> 
+sg-0c4144342baff5c79 : tcp : 2049 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:okts-jenkins
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-073b783fcdf7119f2
+			
+			</td>
+			
+			<td>
+			
+			vol-0bfbb72c290d033cc[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-0c4144342baff5c79 : tcp : 80 <br> 
+sg-0c4144342baff5c79 : tcp : 22 <br> 
+sg-0c4144342baff5c79 : tcp : 8083 <br> 
+sg-0c4144342baff5c79 : tcp : 443 <br> 
+sg-0c4144342baff5c79 : tcp : 2049 <br> 
+			
+			</td>
+			
+			<td>
+			
+			Name:okts-nexus
+			
+			</td>
+			
+			</tr>
+			
+			
+			
+			<tr>
+			
+			<td>
+			
+			us-east-1a
+			
+			</td>
+			
+			<td>
+			
+			i-05ea096165eff09d8
+			
+			</td>
+			
+			<td>
+			
+			vol-040a4be6673fea8c1[NONE]
+			
+			</td>
+			
+			<td>
+			
+			sg-02b98aa9afc8b38d6 : tcp : 80 <br> 
+sg-02b98aa9afc8b38d6 : tcp : 22 <br> 
+			
+			</td>
+			
+			<td>
+			
+			
+			
+			</td>
+			
+			</tr>
+			
+			
+		    <tr>
+		        <td>gsdjhgadjsagjdas</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		    </tr>
+		    <tr>
+		        <td>gsdjhgadjsagjdas</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		    </tr>
+		    <tr>
+		        <td>gsdjhgadjsagjdas</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		    </tr>
+		    <tr>
+		        <td>gsdjhgadjsagjdas</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		        <td>sajdgjsagdjsagdj</td>
+		        <td>@jhjhgjgjhhkhk</td>
+		    </tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
