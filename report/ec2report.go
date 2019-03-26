@@ -1,7 +1,6 @@
 package report
 
 import (
-	"fmt"
 	"bytes"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
 	"github.com/iamabhishek-dubey/cloud-auditor/environment"
@@ -11,6 +10,7 @@ import (
 	"strings"
 	"os"
 	"text/template"
+	"html"
 )
 
 type Ec2Report struct {
