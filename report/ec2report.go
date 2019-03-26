@@ -90,9 +90,9 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	htdata := PageData{
 	    Avz: dts,
 	}
-	f, err := os.Create("htmlreports/ec2.html")
+	f := os.Create("htmlreports/ec2.html")
 	tmpl := template.Must(template.ParseFiles("htmlreports/ec2template.html"))
-	result := tmpl.Execute(f, htdata)
+	tmpl.Execute(f, htdata)
 	f.Close()
 	sortedData := sortTableData(data)
 	return sortedData
