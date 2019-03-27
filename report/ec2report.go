@@ -55,7 +55,6 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 	const endh = "</tr>"
 	const tds = "<td>"
 	const tde = "</td>"
-	const brk = "<br>"
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -77,14 +76,12 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			html.UnescapeString(tde),
 			html.UnescapeString(tds),
 			ec2Report.VolumeReport.ToTableData(),
-			html.UnescapeString(brk),
 			html.UnescapeString(tde),
 			html.UnescapeString(tds),
 			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
 			html.UnescapeString(tde),
 			html.UnescapeString(tds),
 			ec2Report.SortableTags.ToTableData(),
-			html.UnescapeString(brk),
 			html.UnescapeString(tde),
 			html.UnescapeString(endh),
 		}
@@ -115,12 +112,12 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			volume := r.Volumes.FindById(*blockDeviceMapping.Ebs.VolumeId)
 			if !*volume.Encrypted {
 				ec2OK = false
-				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE)
+				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE, "<br>")
 			} else {
 				kmskey := r.KMSKeys.FindByKeyArn(*volume.KmsKeyId)
 				if !kmskey.Custom {
 					ec2OK = false
-					ec2Report.VolumeReport.AddEBS(*volume.VolumeId, DKMS)
+					ec2Report.VolumeReport.AddEBS(*volume.VolumeId, DKMS, "<br>")
 				}
 			}
 		}
