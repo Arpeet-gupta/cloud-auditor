@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Ot-Security(EC2)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="container">
+		<a href="index.html"><button class="btn btn-success">Back</button></a>
+		<img src="images/ot-security.png">
+
+		<h2 class="title">Ot-Security</h2>
+
+	<table class="greyGridTable">
+		<thead>
+			<tr>
+	            <th>Availibility Zone</th>
+	            <th>EC2</th>
+	            <th>Volumes<br>(NONE) - NOT ENCRYPTED<br>(DKMS) - ENCRYPTED</th>
+	            <th>Security Groups<br>(INCOMING CIDR=0.0.0.0/0)<br>ID : PROTOCOL : PORT</th>
+	            <th style="width:15%">EC2 Tags</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+		</tfoot>
+		<tbody>
+            {{range $i := .Avz}}
+            {{range $i}}
+            {{.}}
+            {{end}}
+            {{end}}
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+

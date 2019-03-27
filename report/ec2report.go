@@ -1,6 +1,7 @@
 package report
 
 import (
+	"fmt"
 	"bytes"
 	"github.com/iamabhishek-dubey/cloud-auditor/configuration"
 	"github.com/iamabhishek-dubey/cloud-auditor/environment"
@@ -8,6 +9,9 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"os"
+	"text/template"
+	"html"
 )
 
 type Ec2Report struct {
@@ -16,6 +20,10 @@ type Ec2Report struct {
 	SortableTags      *SortableTags
 	SecurityGroupsIDs []string
 	AvailabilityZone  string
+}
+
+type PageData struct {
+	Avz    [][]string
 }
 
 func NewEc2Report(instanceID string) *Ec2Report {
@@ -42,6 +50,11 @@ func (e *Ec2Reports) GetHeaders() []string {
 
 func (e *Ec2Reports) FormatDataToTable() [][]string {
 	data := [][]string{}
+	dts := [][]string{}
+	const starth = "<tr>"
+	const endh = "</tr>"
+	const tds = "<td>"
+	const tde = "</td>"
 
 	for _, ec2Report := range *e {
 		row := []string{
@@ -52,7 +65,41 @@ func (e *Ec2Reports) FormatDataToTable() [][]string {
 			ec2Report.SortableTags.ToTableData(),
 		}
 		data = append(data, row)
+
+		fts := []string{
+			html.UnescapeString(starth),
+			html.UnescapeString(tds),
+			ec2Report.AvailabilityZone,
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.InstanceID,
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.VolumeReport.ToTableData(),
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			SliceOfStringsToString(ec2Report.SecurityGroupsIDs),
+			html.UnescapeString(tde),
+			html.UnescapeString(tds),
+			ec2Report.SortableTags.ToTableData(),
+			html.UnescapeString(tde),
+			html.UnescapeString(endh),
+		}
+		dts = append(dts, fts)
 	}
+
+	htdata := PageData{
+	    Avz: dts,
+	}
+
+	f, err := os.Create("htmlreports/ec2.html")
+	if err != nil{
+		fmt.Println("create file: ", err)
+	}
+
+	tmpl := template.Must(template.ParseFiles("htmlreports/ec2template.html"))
+	tmpl.Execute(f, htdata)
+	f.Close()
 	sortedData := sortTableData(data)
 	return sortedData
 }
@@ -65,12 +112,12 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 			volume := r.Volumes.FindById(*blockDeviceMapping.Ebs.VolumeId)
 			if !*volume.Encrypted {
 				ec2OK = false
-				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE)
+				ec2Report.VolumeReport.AddEBS(*volume.VolumeId, NONE, "<br>")
 			} else {
 				kmskey := r.KMSKeys.FindByKeyArn(*volume.KmsKeyId)
 				if !kmskey.Custom {
 					ec2OK = false
-					ec2Report.VolumeReport.AddEBS(*volume.VolumeId, DKMS)
+					ec2Report.VolumeReport.AddEBS(*volume.VolumeId, DKMS, "<br>")
 				}
 			}
 		}
@@ -81,7 +128,7 @@ func (e *Ec2Reports) GenerateReport(r *Ec2ReportRequiredResources) {
 				for _, ipPermission := range ipPermissions {
 					for _, ipRange := range ipPermission.IpRanges {
 						if *ipRange.CidrIp == "0.0.0.0/0" {
-							ec2Report.SecurityGroupsIDs = append(ec2Report.SecurityGroupsIDs, *sg.GroupId+" : "+*ipPermission.IpProtocol+" : "+strconv.FormatInt(*ipPermission.ToPort, 10))
+							ec2Report.SecurityGroupsIDs = append(ec2Report.SecurityGroupsIDs, *sg.GroupId+" : "+*ipPermission.IpProtocol+" : "+strconv.FormatInt(*ipPermission.ToPort, 10)+ " <br> ")
 							ec2OK = false
 						}
 					}
