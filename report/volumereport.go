@@ -7,8 +7,8 @@ import (
 
 type VolumeReport []string
 
-func (v *VolumeReport) AddEBS(volumeID string, encryptionType EncryptionType) {
-	*v = append(*v, volumeID+fmt.Sprintf("[%s]", encryptionType.String()))
+func (v *VolumeReport) AddEBS(volumeID string, encryptionType EncryptionType, brea string) {
+	*v = append(*v, volumeID+fmt.Sprintf("[%s]", encryptionType.String()), brea)
 }
 
 func (v *VolumeReport) ToTableData() string {
