@@ -16,7 +16,7 @@ jobs:
     working_directory: /go/src/github.com/iamabhishek-dubey/cloud-auditor
     steps:
       - setup_remote_docker
-      - docker build -t cloud-auditor:latest -f Dockerfile .
+      - run: make build-image
 
 workflows:
   version: 2
