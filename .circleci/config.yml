@@ -10,3 +10,11 @@ jobs:
       - run: make get-depends
       - run: make build-code
 
+  docker-image:
+    docker:
+      - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/iamabhishek-dubey/cloud-auditor
+    steps:
+      - setup_remote_docker
+      - make build-image
+
