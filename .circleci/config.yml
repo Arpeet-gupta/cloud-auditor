@@ -18,3 +18,10 @@ jobs:
       - setup_remote_docker
       - make build-image
 
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - docker-image
+
