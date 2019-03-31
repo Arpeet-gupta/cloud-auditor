@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/iamabhishek-dubey/cloud-auditor.svg?style=svg)](https://circleci.com/gh/iamabhishek-dubey/cloud-auditor)
 
-# OpsTree Cloud Auditor
+# Cloud Auditor
 The main goal of creating this tool is to provide easier and faster security scan of the cloud environment. As a result, the consumer will get to know exactly where his/her security is lacking.
 
 The program is written in Golang which enhances the performance of tool in terms of speed.
